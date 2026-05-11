@@ -1,4 +1,5 @@
-
+<?php
+?>
 <nav>
     <ul>
         <li><a href="#">Panes</a></li>
