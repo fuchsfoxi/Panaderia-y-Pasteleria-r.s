@@ -1,8 +1,8 @@
 <?php
-
+define("TITLE_BUSINESS", "STOCK");
 
 //leer el archivo .env que esta en la raiz del proyecto
-$envFilr = dirname(__DIR__, 2) . '/.env';
+$envFile = dirname(__DIR__, 2) . '/.env';
 if (file_exists($envFile)) {
     // Recorremos cada linea del archivo .env omitiendo saltos y lineas vacias
     foreach(file ($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line){
