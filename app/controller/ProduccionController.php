@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../core/Controller.php';
 require_once __DIR__ . '/../models/Produccion.php';
 
-class EmpleadosController extends Controller {
+class ProduccionController extends Controller {
     
     public function index(): void {
         if (!isset($_SESSION['usuario'])) {
