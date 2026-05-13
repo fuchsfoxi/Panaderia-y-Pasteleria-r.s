@@ -15,4 +15,4 @@ class Turno {
         $stmt->execute();
         return $stmt->fetchAll();
     }
-}
+}   
