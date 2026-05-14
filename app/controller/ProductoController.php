@@ -37,7 +37,7 @@ class ProductoController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $modelo = new Producto();
             $modelo->actualizar($id, trim($_POST['nombre']), (int)$_POST['id_tipo']);
-            header("Location: " . BASE_URL . "/producto");
+            header("Location: " . BASE_URL . "/historial");
             exit();
         }
         $this->view('producto/editar', ['id' => $id]);
@@ -50,7 +50,7 @@ class ProductoController extends Controller {
         }
         $modelo = new Producto();
         $modelo->eliminar($id);
-        header("Location: " . BASE_URL . "/producto");
+        header("Location: " . BASE_URL . "/historial");
         exit();
     }
 }
