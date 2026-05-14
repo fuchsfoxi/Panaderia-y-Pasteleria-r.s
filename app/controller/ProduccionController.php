@@ -44,7 +44,7 @@ class ProduccionController extends Controller {
                 (int)$_POST['id_producto'],
                 (int)$_POST['id_turno']
             );
-            header("Location: " . BASE_URL . "/produccion");
+            header("Location: " . BASE_URL . "/historial");
             exit();
         }
 
@@ -69,7 +69,7 @@ class ProduccionController extends Controller {
                 (int)$_POST['id_producto'],
                 (int)$_POST['id_turno']
             );
-            header("Location: " . BASE_URL . "/produccion");
+            header("Location: " . BASE_URL . "/historial");
             exit();
         }
 
@@ -84,7 +84,7 @@ class ProduccionController extends Controller {
 
         $modelo = new Produccion();
         $modelo->eliminar($id);
-        header("Location: " . BASE_URL . "/produccion");
+        header("Location: " . BASE_URL . "/historial");
         exit();
     }
 }
