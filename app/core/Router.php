@@ -17,31 +17,31 @@ public function run(): void {
 
     $params = array_slice($partes, 2);
 
-    $archivo = __DIR__ . '/../controllers/' . $nombreController . '.php'; // ✅ faltaba /
+    $archivo = __DIR__ . '/../controllers/' . $nombreController . '.php'; 
 
     if (!file_exists($archivo)) {
         $this->abortar(404);
         return;
     }
 
-    require_once $archivo; // ✅ movido dentro del método
+    require_once $archivo; 
 
-    if (!class_exists($nombreController)) { // ✅ typo: $nombreControler → $nombreController
+    if (!class_exists($nombreController)) { 
         $this->abortar(404);
         return;
     }
 
-    $controller = new $nombreController(); // ✅ sintaxis: new $var();  no  new $var;()
+    $controller = new $nombreController(); 
 
     if (!method_exists($controller, $metodo)) {
         $this->abortar(404);
         return;
     }
 
-    $controller->$metodo(...$params); // ✅ faltaba llamar al método
+    $controller->$metodo(...$params); 
 }
 
-private function abortar(int $codigo): void { // ✅ movido dentro de la clase, no del método
+private function abortar(int $codigo): void { 
     http_response_code($codigo);
     echo "<h1>Error $codigo - Página no encontrada</h1>";
 }
