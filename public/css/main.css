@@ -49,7 +49,7 @@ body {
 .topbar .title-business {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--text_secundario);
 }
 
 .hamburger {
@@ -64,7 +64,7 @@ body {
 }
 
 .hamburger:hover {
-  background-color: var(--bg);
+  background-color: var(--boton_principal);
 }
 
 .overlay {
@@ -83,7 +83,7 @@ body {
   position: fixed;
   top: 0;
   left: -100%;
-  width: var(--sidebar-w);
+  width: var(--fondos);
   height: 100vh;
   background-color: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-line);
