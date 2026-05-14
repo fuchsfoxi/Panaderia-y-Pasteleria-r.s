@@ -2,7 +2,7 @@
 
 require_once __DIR__ . ("/../config/Config.php");
 require_once __DIR__ . ("/../core/Controller.php");
-require_once __DIR__ . ("/../model/login.php");
+require_once __DIR__ . ("/../models/login.php");
 
 class  LoginController extends controller{
 
@@ -31,6 +31,6 @@ public function index():void {
             }
         }
     }
-    $this->view('login/index', ['error' => $error]);
+    $this->view('auth/login', ['error' => $error]);
 }
 }

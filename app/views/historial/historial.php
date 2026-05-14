@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/historial.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
-    <?php include __DIR__ . '/../../layouts/menu.php'; ?>
+    <?php include __DIR__ . '/../layouts/menu.php'; ?>
 
     <div class="historial_contenido">
-        
-        <div class="fecha_historial">
-            <input type="date" name="fecha_historial" id="fecha_historial">
-        </div>
 
-        <div class="produccion_historial">
-            <select name="filtrar_producto" id="producto_filtrar">
+        <form method="GET" action="<?= BASE_URL ?>/historial">
+            <input type="date" name="fecha" id="fecha_historial">
+            <select name="tipo" id="producto_filtrar">
                 <option value="todos">Todos los productos</option>
                 <option value="Pan">Panes</option>
                 <option value="Bocadito">Bocaditos</option>
                 <option value="Torta">Tortas</option>
             </select>
-        </div>
+            <button type="submit">Buscar</button>
+        </form>
 
-        <!-- Lista de registros -->
-        <?php foreach ($panes as $item): ?>
+        <?php foreach ($registros as $item): ?>
             <div class="carta_historial">
                 <p><?= $item['nombre_prod'] ?></p>
                 <p><?= $item['cantidad_prod'] ?></p>
@@ -35,6 +35,7 @@
         <?php endforeach; ?>
 
     </div>
-<?php include __DIR__ . '/../../layouts/footer.php'; ?>
+
+    <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 </html>

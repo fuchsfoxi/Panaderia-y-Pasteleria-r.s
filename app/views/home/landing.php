@@ -1,14 +1,19 @@
+<?php echo BASE_URL; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LANDING</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/landing.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
     <div class="iniciar_Session_landig">
-        <a href="<?= BASE_URL ?>/login">Iniciar sesión</a>  
-    </div>
+        <a href="<?= BASE_URL ?>/login">Iniciar sesión</a>
+    </div>  
     <div class="img_landing">
         <img src="<?= BASE_URL ?>/public/img/imglanding.svg" alt="Imagen de panadería">
     </div>
@@ -30,6 +35,6 @@
             <p>Revisa y gestiona todos los registros de producción en cualquier momento.</p>
         </div>
     </div>
-    <?php include __DIR__ . '/../../layouts/footer.php'; ?>
+    <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body> 
 </html>

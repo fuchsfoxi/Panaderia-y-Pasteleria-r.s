@@ -17,7 +17,7 @@ public function run(): void {
 
     $params = array_slice($partes, 2);
 
-    $archivo = __DIR__ . '/../controllers/' . $nombreController . '.php'; 
+    $archivo = __DIR__ . '/../controller/' . $nombreController . '.php'; 
 
     if (!file_exists($archivo)) {
         $this->abortar(404);

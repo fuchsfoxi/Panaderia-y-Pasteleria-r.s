@@ -19,7 +19,7 @@
     <div class="sidebar-logo"><?php echo htmlspecialchars($usuario['nombre_usuario'] ?? 'Usuario'); ?></div>
     <ul>
         <li>
-            <a href="<?php echo BASE_URL; ?>/dashboard" class="<?php echo $rutaActual === 'dashboard' ? 'activo' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>/home" class="<?php echo $rutaActual === 'home' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-house"></i>
                 <span>Inicio</span>
             </a>
@@ -33,7 +33,7 @@
         <li>
             <a href="<?php echo BASE_URL; ?>/historial" class="<?php echo $rutaActual === 'historial' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-clock-rotate-left"></i>
-                <span>Historial</span>
+                <span>Historial</span>  
             </a>
         </li>
         <li>
