@@ -13,7 +13,7 @@ class ProductoController extends Controller {
         $modelo = new Producto();
         $datos = ['productos' => $modelo->obtenerProductos()];
         $this->view('producto/index', $datos);
-    } // ← cierra index
+    } 
 
     public function crear(): void {
         if (!isset($_SESSION['usuario'])) {
