@@ -1,5 +1,6 @@
 <?php
 
+define("TITLE_BUSINESS", "PANADERIA Y PASTELERIA R.S");
 
 //leer el archivo .env que esta en la raiz del proyecto
 $envFile = dirname(__DIR__ ) . '/.env';

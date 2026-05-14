@@ -206,79 +206,74 @@ main {
   border: 1px solid var(--sidebar-line);
 }
 
+
+
+
+
 /* ───── DROPDOWN / SUBMENU ───── */
 
-.sidebar ul li {
-  position: relative;
+.dropdown-btn{
+    width:100%;
+    border:none;
+    background:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:'Poppins',sans-serif;
+    font-size:.92rem;
+    font-weight:500;
+    color:var(--muted);
+    transition:.2s;
 }
 
-.dropdown > a {
-  justify-content: space-between;
+.dropdown-btn:hover{
+    background:#ececec;
+    color:var(--text);
 }
 
-.dropdown > a::after {
-  content: "▼";
-  font-size: 0.7rem;
-  transition: transform 0.3s ease;
+.dropdown-btn span{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.dropdown.open > a::after {
-  transform: rotate(180deg);
+/* ───────── SUBMENU ───────── */
+.dropdown{
+    display: flex;
+    flex-direction: column;
 }
 
-.sub-menu {
-  list-style: none;
-  position: absolute;
-  top: 0;
-  left: 105%;
-  width: 190px;
-
-  background-color: var(--submenu-bg);
-
-  border-radius: 10px;
-  border: 1px solid var(--sidebar-line);
-
-  padding: 8px;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transform: translateY(10px);
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease,
-    visibility 0.25s ease;
-
-  z-index: 300;
+.submenu{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+    display: none;
+    padding-left: 20px;
 }
 
-.dropdown.open .sub-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.dropdown.active .submenu{
+    max-height: 200px;
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
-.sub-menu li {
-  width: 100%;
+.submenu li{
+    list-style: none;
+    margin-bottom: 5px;
 }
 
-.sub-menu li a {
-  padding: 10px 14px;
-  border-radius: 8px;
-  color: var(--muted);
-  font-size: 0.85rem;
-  transition: background 0.2s ease;
+.submenu li a{
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px;
 }
-
-.sub-menu li a:hover {
-  background-color: var(--boton_principal);
-  color: var(--text_secundario);
+.submenu li a:hover{
+    background:#d11414;
 }
-
-.sidebar > ul {
-  overflow: visible;
-} 
 
 @media (min-width: 768px) {
   .topbar {
