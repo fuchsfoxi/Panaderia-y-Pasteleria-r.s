@@ -24,7 +24,7 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li>
+        <li classs="dropdow">
             <a href="<?php echo BASE_URL; ?>/stock" class="<?php echo $rutaActual === 'stock' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-boxes-stacked"></i>
                 <span>Stock</span>
