@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Bocaditos</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/historial.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
-<?php include __DIR__ . '/../../layouts/menu.php'; ?>
+<?php include __DIR__ . '/../layouts/menu.php'; ?>
+<?php include __DIR__ .'/../layouts/menu_Ingres.php';?>
 
     <?php if (isset($_GET['error'])): ?>
         <p style="color:red">Debe ingresar una cantidad.</p>
@@ -43,6 +47,6 @@
 
         <button type="submit">Guardar</button>
     </form>
-<?php include __DIR__ . '/../../layouts/footer.php'; ?>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 </html>

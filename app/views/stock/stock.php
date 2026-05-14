@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/historial.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
-    <?php include __DIR__ . '/../../layouts/menu.php'; ?>
+    <?php include __DIR__ . '/../layouts/menu.php'; ?>
 
     <div class="stock_contenido_general">
         
@@ -32,6 +35,6 @@
         </a>
 
     </div>
-    <?php include __DIR__ . '/../../layouts/footer.php'; ?>
+    <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 </html>

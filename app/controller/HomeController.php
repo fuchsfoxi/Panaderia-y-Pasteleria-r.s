@@ -7,7 +7,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $this->view("dashboard/index");
+        $this->view("home/landing");
     }
 }
 
