@@ -30,5 +30,6 @@
             <p>Revisa y gestiona todos los registros de producción en cualquier momento.</p>
         </div>
     </div>
+    <?php include __DIR__ . '/../../layouts/footer.php'; ?>
 </body> 
 </html>

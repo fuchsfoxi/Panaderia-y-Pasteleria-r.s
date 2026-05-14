@@ -39,6 +39,6 @@
 
         <button type="submit">Guardar</button>
     </form>
-
+<?php include __DIR__ . '/../../layouts/footer.php'; ?>
 </body>
 </html>
