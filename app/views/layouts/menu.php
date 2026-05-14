@@ -29,6 +29,11 @@
                 <i class="fa-solid fa-boxes-stacked"></i>
                 <span>Stock</span>
             </a>
+                <ul class = "sub-menu">
+                    <li><a href="#">opcion 01</a></li>
+                    <li><a href="#">opcion 02</a></li>
+                    <li><a href="#">opcion 03</a></li>
+                </ul>
         </li>
         <li>
             <a href="<?php echo BASE_URL; ?>/historial" class="<?php echo $rutaActual === 'historial' ? 'activo' : ''; ?>">
