@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock - Panes</title>
+</head>
+<body>
+    <?php include __DIR__ . '/../../layouts/menu.php'; ?>
+
+    <form action="<?= BASE_URL ?>/produccion/crear" method="POST">
+        
+        <div class="stock_Panes">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" required>
+        </div>
+
+        <div class="stock_Panes">
+            <label for="id_turno">Turno</label>
+            <select id="id_turno" name="id_turno" required>
+                <?php foreach ($turnos as $turno): ?>
+                    <option value="<?= $turno['id_turno'] ?>">
+                        <?= $turno['nombre_turno'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="stock_Panes">
+            <label for="id_producto">Producto</label>
+            <select id="id_producto" name="id_producto" required>
+                <?php foreach ($productos as $producto): ?>
+                    <option value="<?= $producto['id_producto'] ?>">
+                        <?= $producto['nombre_prod'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+</body>
+</html>

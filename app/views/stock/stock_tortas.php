@@ -1,36 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Tortas</title>
 </head>
 <body>
-<?php include '../components/menu.php'; ?>
-<?php include '../components/menu_Ingres.php'; ?>
+<?php include __DIR__ . '/../../layouts/menu.php'; ?>
 
-    <div class="ingreso_datos_tortas">
+    <?php if (isset($_GET['error'])): ?>
+        <p style="color:red">Debe ingresar una cantidad.</p>
+    <?php endif; ?>
+
+    <form action="<?= BASE_URL ?>/produccion/crear" method="POST">
+        
         <div class="stock_tortas">
-            <input type="number" id="Canti_Tortas" placeholder="Cantidad de tortas" min="0" step="1">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" required>
         </div>
 
         <div class="stock_tortas">
-            <select id="Producto_Tortas">
-                <option value="Chocolate">Chocolate</option>
-                <option value="Vainilla">Vainilla</option>
-                <option value="Fresa">Fresa</option>
-                <option value="Limón">Limón</option>
-                <option value="Coco">Coco</option>
+            <label for="id_producto">Torta</label>
+            <select id="id_producto" name="id_producto" required>
+                <?php foreach ($productos as $producto): ?>
+                    <option value="<?= $producto['id_producto'] ?>">
+                        <?= $producto['nombre_prod'] ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
         </div>
 
-        <div class="boton_guardar_tortas">
-            <button id="guardarStockTortas">Guardar</button>
+        <div class="stock_tortas">
+            <label for="id_turno">Turno</label>
+            <select id="id_turno" name="id_turno" required>
+                <?php foreach ($turnos as $turno): ?>
+                    <option value="<?= $turno['id_turno'] ?>">
+                        <?= $turno['nombre_turno'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
 
-        <div class="Carta_guardado_tortas"> 
+        <button type="submit">Guardar</button>
+    </form>
 
-        </div>
-    </div>
 </body>
 </html>

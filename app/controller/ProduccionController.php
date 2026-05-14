@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../core/Controller.php';
 require_once __DIR__ . '/../models/Produccion.php';
+require_once __DIR__ . '/../models/Producto.php';
+require_once __DIR__ . '/../models/Turno.php';
 
 class ProduccionController extends Controller {
     
@@ -16,10 +18,8 @@ class ProduccionController extends Controller {
             'bocaditos' => $modelo->obtenerProduccion('Bocadito'),
             'tortas'    => $modelo->obtenerProduccion('Torta'),
         ];
-        $this->view('produccion/index', $datos);
+        $this->view('stock/stock', $datos);
     }
-
-
 
     public function crear(): void {
         if (!isset($_SESSION['usuario'])) {
@@ -28,15 +28,31 @@ class ProduccionController extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $coches = (int)($_POST['cantidad_coches'] ?? 0);
+            $latas  = (int)($_POST['cantidad_latas'] ?? 0);
+
+            if ($coches === 0 && $latas === 0) {
+                header("Location: " . BASE_URL . "/produccion/crear?error=1");
+                exit();
+            }
+
+            $cantidad = $coches + $latas;
+
             $modelo = new Produccion();
             $modelo->insertar(
-                (int)$_POST['cantidad'],
+                $cantidad,
                 (int)$_POST['id_producto'],
                 (int)$_POST['id_turno']
             );
             header("Location: " . BASE_URL . "/produccion");
             exit();
         }
+
+        $datos = [
+            'productos' => (new Producto())->obtenerProductos(),
+            'turnos'    => (new Turno())->obtenerTurnos(),
+        ];
+        $this->view('stock/stock_panes', $datos);
     }
 
     public function editar(int $id): void {
@@ -56,6 +72,8 @@ class ProduccionController extends Controller {
             header("Location: " . BASE_URL . "/produccion");
             exit();
         }
+
+        $this->view('historial/historial', ['id' => $id]);
     }
 
     public function eliminar(int $id): void {
@@ -65,14 +83,7 @@ class ProduccionController extends Controller {
         }
 
         $modelo = new Produccion();
-        $metodoEliminar = 'eliminar';
-        if (!method_exists($modelo, $metodoEliminar) && method_exists($modelo, 'eliminarProduccion')) {
-            $metodoEliminar = 'eliminarProduccion';
-        }
-        if (method_exists($modelo, $metodoEliminar)) {
-            $modelo->{$metodoEliminar}($id);
-        }
-
+        $modelo->eliminar($id);
         header("Location: " . BASE_URL . "/produccion");
         exit();
     }

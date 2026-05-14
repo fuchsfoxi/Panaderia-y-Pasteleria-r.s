@@ -6,7 +6,7 @@
     <title>Inicio</title>
 </head>
 <body>
-    <?php include '../components/menu.php'; ?>
+    <?php include '../layouts/menu.php'; ?>
     
     <div class = "encabezado">
         <h1>PANADERIA Y PASTELERIA R.S</h1>
