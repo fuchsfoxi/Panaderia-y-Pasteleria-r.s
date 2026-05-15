@@ -5,152 +5,176 @@
 }
 
 :root{
-    --carta: #0B2B26;
+    --carta: rgba(11, 43, 38, 0.35);
+
     --texto_principal: #DAF1DE;
+
     --texto_secundario: #8EB69B;
+
     --inicio_Session_btn: #235347;
 }
 
 body{
-    background-color: var(--texto_principal);
-}
-
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    background: var(--carta); 
+
+    overflow: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url("../img/fondo_temporal_login.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    animation: zoomBg 20s ease-in-out infinite alternate;
 }
 
-.form_details {
-    font-size: 25px;
-    font-weight: 600;
-    padding-bottom: 10px;
-    color: var(--texto_principal); /* ← solo este */
+@keyframes zoomBg{
+
+    from{
+        transform: scale(1);
+    }
+
+    to{
+        transform: scale(1.05);
+    }
+
 }
 
-.form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform-style: preserve-3d;
-  transition: all 1s ease;
+.container{
+    width: 100%;
+
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 }
 
-.form .form_front {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  position: absolute;
-  backface-visibility: hidden;
-  padding: 65px 45px;
-  border-radius: 15px;
-  box-shadow: inset 2px 2px 10px rgba(0,0,0,1),
-  inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+.form{
+    position: relative;
 }
 
-.form .form_back {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  position: absolute;
-  backface-visibility: hidden;
-  transform: rotateY(-180deg);
-  padding: 65px 45px;
-  border-radius: 15px;
-  box-shadow: inset 2px 2px 10px rgba(0,0,0,1),
-  inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+.form_front{
+
+    width: 380px;
+
+    padding: 50px 40px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+    0 0 30px rgba(0,0,0,0.5),
+    inset 0 0 10px rgba(255,255,255,0.05);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
 }
 
-.form_details {
-  font-size: 25px;
-  font-weight: 600;
-  padding-bottom: 10px;
-  color: white;
+.form_details{
+
+    color: white;
+
+    font-size: 35px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+    letter-spacing: 1px;
 }
 
-.input {
-  width: 245px;
-  min-height: 45px;
-  color: #fff;
-  outline: none;
-  transition: 0.35s;
-  padding: 0px 7px;
-  background-color: #212121;
-  border-radius: 6px;
-  border: 2px solid #212121;
-  box-shadow: 6px 6px 10px rgba(0,0,0,1),
-  1px 1px 10px rgba(255, 255, 255, 0.6);
+.input{
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 15px;
+
+    background: rgba(255,255,255,0.1);
+
+    backdrop-filter: blur(5px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    transition: 0.3s;
 }
 
-.input::placeholder {
-  color: #999;
+.input::placeholder{
+    color: rgba(255,255,255,0.7);
 }
 
-.input:focus.input::placeholder {
-  transition: 0.3s;
-  opacity: 0;
+.input:focus{
+
+    transform: scale(1.03);
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    box-shadow: 0 0 15px rgba(255,255,255,0.15);
 }
 
-.input:focus {
-  transform: scale(1.05);
-  box-shadow: 6px 6px 10px rgba(0,0,0,1),
-  1px 1px 10px rgba(255, 255, 255, 0.6),
-  inset 2px 2px 10px rgba(0,0,0,1),
-  inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+.btn{
+
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    color: white;
+
+    background: rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(5px);
+
+    transition: 0.3s;
 }
 
-.btn {
-  padding: 10px 35px;
-  cursor: pointer;
-  background-color: #212121;
-  border-radius: 6px;
-  border: 2px solid #212121;
-  box-shadow: 6px 6px 10px rgba(0,0,0,1),
-  1px 1px 10px rgba(255, 255, 255, 0.6);
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  transition: 0.35s;
-}
+.btn:hover{
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 6px 6px 10px rgba(0,0,0,1),
-  1px 1px 10px rgba(255, 255, 255, 0.6),
-  inset 2px 2px 10px rgba(0,0,0,1),
-  inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-}
+    transform: translateY(-3px);
 
-.btn:focus {
-  transform: scale(1.05);
-  box-shadow: 6px 6px 10px rgba(0,0,0,1),
-  1px 1px 10px rgba(255, 255, 255, 0.6),
-  inset 2px 2px 10px rgba(0,0,0,1),
-  inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-}
+    background: rgba(255,255,255,0.15);
 
-.form .switch {
-  font-size: 13px;
-  color: white;
-}
-
-.form .switch .signup_tog {
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.container #signup_toggle {
-  display: none;
-}
-
-.container #signup_toggle:checked + .form {
-  transform: rotateY(-180deg);
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
