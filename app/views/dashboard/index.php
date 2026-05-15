@@ -14,17 +14,30 @@
 <?php include __DIR__ . '/../layouts/menu.php'; ?>
 
 <!-- CONTENIDO PRINCIPAL -->
-<main>
-    <nav class="breadcrumb">
-        <span>Inicio</span>
-        <i class="fa-solid fa-chevron-right"></i>
-        <span id="breadcrumb-page">Dashboard</span>
-    </nav>
-    <div class="main-content">
-        <div class="table-responsive">
+        <main>
+            <nav class="breadcrumb">
+                <span>Inicio</span>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span id="breadcrumb-page">Dashboard</span>
+            </nav>
+            <div class="main-content">
+                <div class="table-responsive">
+                </div>
+            </div>
+        </main>
+
+        
+
+        <div class="card-general" id="card-general">
+            <div class="card-header">
+                
+            </div>
+            
+
         </div>
-    </div>
-</main>
+
+
+
 <script src="<?php echo BASE_URL; ?>/public/js/dashboard.js"></script>
 </body>
 
