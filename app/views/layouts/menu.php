@@ -24,12 +24,12 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li classs="dropdow">
+        <li class="dropdown">
             <a href="<?php echo BASE_URL; ?>/stock" class="<?php echo $rutaActual === 'stock' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-boxes-stacked"></i>
                 <span>Stock</span>
             </a>
-                <ul class = "sub-menu">
+                <ul class="sub-menu">
                     <li><a href="#">opcion 01</a></li>
                     <li><a href="#">opcion 02</a></li>
                     <li><a href="#">opcion 03</a></li>
