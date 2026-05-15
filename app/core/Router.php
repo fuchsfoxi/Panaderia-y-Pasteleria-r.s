@@ -13,7 +13,7 @@ public function run(): void {
         ? ucfirst(strtolower($partes[0])) . "Controller"
         : "HomeController";
 
-    $metodo = !empty($partes[1]) ? $partes[1] : "index";
+    $metodo = !empty($partes[1]) ? $partes[1] : (!empty($partes[0]) ? "index" : "landing");
 
     $params = array_slice($partes, 2);
 

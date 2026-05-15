@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <title><?php echo TITLE_BUSINESS; ?></title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/Login.css">
+    <title><?= TITLE_BUSINESS ?></title>
 </head>
 <body>
 
-   
-    <?php if(isset($error) && $error): ?>
-        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
-    <?php endif; ?>
+<div class="container">
+    <form class="form" action="" method="POST">
+        <div class="form_front">
+            <div class="form_details">Login</div>
 
-    <form action="" method="POST">
+            <?php if(isset($error) && $error): ?>
+                <p style="color: red;"><?= htmlspecialchars($error) ?></p>
+            <?php endif; ?>
 
-        <label for="user">Usuario</label>
-
-        <input id="user" type="text" name="user" required>
-
-        <label for="pass">Contraseña</label>
-
-        <input id="pass" type="password" name="pass" required>
-
-        <button type="submit">Enviar</button>
-
+            <input type="text" class="input" placeholder="Usuario" name="user" required>
+            <input type="password" class="input" placeholder="Contraseña" name="pass" required>
+            <button class="btn" type="submit">Iniciar sesión</button>
+        </div>
     </form>
+</div>
 
 </body>
 </html>
