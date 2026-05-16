@@ -43,6 +43,20 @@
                     </p>
                 </div>
             </div>
+
+
+            <div class="card">
+                <div class="content">
+                    <img src="<?= BASE_URL ?>/public/icons/iconslanding2.svg" alt="icono">
+                    <h2> Acceso seguro y confiable</h2>
+                    <p class="para">
+                        Solo el personal autorizado puede ingresar al sistema. Tus datos protegidos en todo momento.
+                    </p>
+                </div>
+            </div>
+
+
+
         </div>
 
     <?php include __DIR__ . '/../layouts/footer.php'; ?>
