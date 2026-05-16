@@ -12,10 +12,11 @@ public function index():void {
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $usuario = trim($_POST['user'] ?? '');
-        $clave = trim($_POST['pass'] ?? '');
+        $clave = trim($_POST['password'] ?? '');
 
         if(empty($usuario) || empty($clave)){
             $error = "Por favor complete todos los campos.";
+        
         }else{
             $resultado = (new Login())->login($usuario, $clave);
 

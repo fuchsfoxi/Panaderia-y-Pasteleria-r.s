@@ -18,7 +18,7 @@
             <?php endif; ?>
 
             <input type="text" class="input" placeholder="Usuario" name="user" required>
-            <input type="password" class="input" placeholder="Contraseña" name="pass" required>
+            <input type="password" class="input" placeholder="Contraseña" name="password" required>
             <button class="btn" type="submit">Iniciar sesión</button>
         </div>
     </form>
