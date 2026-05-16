@@ -1,59 +1,44 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="Es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="<?=  BASE_URL; ?>/public/css/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title><?php echo TITLE_BUSINESS; ?> - Panel de Administración</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/dashboard.css">
 </head>
+
 <body>
-    <?php include __DIR__ . '/../layouts/menu.php'; ?>
-    
-    <div class = "encabezado">
-        <h1>PANADERIA Y PASTELERIA R.S</h1>
-    </div>
 
-    <div class = "cartas">
-        <ul>
-            <li>        
-                <div class = "contenido_carta">
-                    <p>Total de Panes</p>2
-                    <div class="numero_total" id="totalPanes"></div>
+<?php include __DIR__ . '/../layouts/menu.php'; ?>
+
+<!-- CONTENIDO PRINCIPAL -->
+        <main>
+            <nav class="breadcrumb">
+                <span>Inicio</span>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span id="breadcrumb-page">Dashboard</span>
+            </nav>
+            <div class="main-content">
+                <div class="table-responsive">
                 </div>
-            </li>
+            </div>
+        </main>
 
-            <li>
-                <div class = "contenido_carta">
-                    <p>Total de Pasteles</p>
-                    <div class="numero_total" id="totalPasteles"></div>
-                </div>
-            </li>
+        
 
-            <li>
-                <div class="contenido_carta">
-                    <p>Total de Bocaditos</p>
-                    <div class="numero_total" id="totalBocaditos"></div>
-                </div>
-            </li>
-        </ul>
-    </div>
+        <div class="card-general" id="card-general">
+            <div class="card-header">
+                
+            </div>
+            
 
-    <div class="color_expl">
-        <ul>
-            <li class="color_ayer">
-                <p>Ayer</p>
-            </li>
+        </div>
 
-            <li class="color_hoy">
-                <p>Hoy</p>
-            </li>
-        </ul>
-    </div>
 
-    <div class="grafica">
-        <canvas id="grafica_comparativa"></canvas>
-    </div>
-<?php include __DIR__ . '/../layouts/footer.php'; ?>
+
+<script src="<?php echo BASE_URL; ?>/public/js/dashboard.js"></script>
 </body>
+
 </html>

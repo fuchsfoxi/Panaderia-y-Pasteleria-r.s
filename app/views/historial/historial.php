@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/main.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/dashboard.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/historial.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
