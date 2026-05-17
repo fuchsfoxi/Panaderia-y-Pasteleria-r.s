@@ -259,46 +259,72 @@ main {
 }
 
 
-/* ─── TABLET / DESKTOP (≥ 768px) ─────────────────── */
-@media (min-width: 768px) {
+/* RESPONSIVE CELULAR */
+@media (max-width: 768px){
 
-    /* Ocultar topbar en desktop */
-    .topbar {
-        display: none;
+    .boton_iniciar_Session{
+        top: 15px;
+        right: 15px;
     }
 
-    /* Sidebar siempre visible */
-    .sidebar {
-        left: 0;
-        top: 0;
+    .img_landing img{
+        height: 250px;
     }
 
-    /* El overlay no aplica en desktop */
-    .overlay {
-        display: none !important;
+    .titulo_landing{
+        text-align: center;
+        font-size: 0.95em;
+        padding: 16px;
     }
 
-    /* Main empuja a la derecha del sidebar */
-    main {
-        margin-top: 0;
-        margin-left: var(--sidebar-w);
-        padding: 36px 32px;
+    .carta_general_landing{
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-top: 40px;
+        padding: 20px;
     }
 
-    .breadcrumb-page {
-        color: #000;
-        font-weight: 600;
+    .card{
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        min-height: 380px;
+    }
+
+    .content{
+        padding: 28px;
+    }
+
+    .content .para{
+        font-size: 16px;
     }
 
 }
 
-/* ─── MOBILE PEQUEÑO (≤ 360px) ───────────────────── */
-@media (max-width: 360px) {
-    .sidebar {
-        width: 100%;
+/* CELULARES PEQUEÑOS */
+@media (max-width: 480px){
+
+    .img_landing img{
+        height: 200px;
     }
 
-    main {
-        padding: 20px 14px;
+    .card{
+        max-width: 100%;
     }
+
+    .content{
+        padding: 22px;
+        gap: 18px;
+    }
+
+    .content .para{
+        font-size: 15px;
+    }
+
+    .boton_iniciar_Session span{
+        padding: 8px 14px;
+        font-size: 0.75em;
+    }
+
 }
