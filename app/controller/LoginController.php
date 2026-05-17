@@ -16,7 +16,6 @@ public function index():void {
 
         if(empty($usuario) || empty($clave)){
             $error = "Por favor complete todos los campos.";
-        
         }else{
             $resultado = (new Login())->login($usuario, $clave);
 
