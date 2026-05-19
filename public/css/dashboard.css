@@ -28,44 +28,6 @@ body {
 
 }
 
-/* ─── TOPBAR (móvil) ─────────────────────────────── */
-.encabezado {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    height: var(--topbar-h);
-    background-color: var(--sidebar-bg);
-    border-bottom: 1px solid var(--sidebar-line);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 200;
-}
-
-
-
-.topbar .title-business {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
-}
-
-.hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: var(--text);
-    padding: 6px;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
-
-.hamburger:hover {
-    background-color: var(--bg);
-}
 
 /* ─── OVERLAY ────────────────────────────────────── */
 .overlay {
