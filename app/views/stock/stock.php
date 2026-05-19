@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/dashboard.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/../views/layouts/menu.php">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>

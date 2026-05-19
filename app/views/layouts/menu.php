@@ -7,7 +7,7 @@
         <span><?php echo htmlspecialchars($usuario['nombre_usuario'] ?? 'Usuario'); ?></span>
     </div>
     <div class="btn-menu">
-        <button class="hamburger" aria-label="Abrir menú">
+        <button class="hamburger" aria-label="Abrir menú" <?php echo $rutaActual === 'dashboard' ? 'disabled' : ''; ?>>
             <i class="fa-solid fa-bars"></i>
         </button>
     </div>
