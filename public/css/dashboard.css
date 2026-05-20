@@ -167,22 +167,42 @@ body {
 .sub-menu {
     list-style: none;
     position: absolute;
-    top: 0; left: 105%;
+    top: 0;
+    left: 105%;
     width: 180px;
     background-color: var(--submenu-bg);
     border-radius: 8px;
     padding: 8px 0;
     opacity: 0;
     visibility: hidden;
-    max-height: 0;
-    overflow: hidden;
+    pointer-events: none;            
     transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 li.open > .sub-menu {
     opacity: 1;
     visibility: visible;
-    max-height: 300px;
+    pointer-events: auto;
+}
+
+/* DEBUG — quitar después */
+li.dropdown.open > .sub-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    max-height: 500px !important;
+    overflow: visible !important;
+    display: block !important;
+}
+
+.sidebar > ul {
+    /* ya tienes overflow: visible — confirma que esté así */
+    overflow: visible;  /* ← crítico */
+}
+
+.sidebar ul li {
+    overflow: visible;  /* ← agrega esto si no está */
+    position: relative;
 }
 
 /* Logout */
