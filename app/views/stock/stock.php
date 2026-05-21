@@ -14,21 +14,21 @@
 <main>
     <div class="stock_contenido_general">
         
-        <a href="<?= BASE_URL ?>/produccion/crear?tipo=Pan">
+        <a href="<?= BASE_URL ?>/stock/panes">
             <div class="carta_stock">
                 <img src="<?= BASE_URL ?>/public/img/stock_panes.svg" alt="pan">
                 <p>Panes</p>
             </div>
         </a>
 
-        <a href="<?= BASE_URL ?>/produccion/crear?tipo=Bocadito">
+        <a href="<?= BASE_URL ?>/stock/bocaditos">
             <div class="carta_stock">
                 <img src="<?= BASE_URL ?>/public/img/stock_bocaditos.svg" alt="bocadito">
                 <p>Bocaditos</p>
             </div>
         </a>
 
-        <a href="<?= BASE_URL ?>/produccion/crear?tipo=Torta">
+        <a href="<?= BASE_URL ?>/stock/tortas">
             <div class="carta_stock">
                 <img src="<?= BASE_URL ?>/public/img/stock_tortas.svg" alt="torta">
                 <p>Tortas</p>
