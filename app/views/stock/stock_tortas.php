@@ -48,10 +48,15 @@
     <div class="cards-produccion">
         <?php foreach ($tortas as $torta): ?>
             <div class="card-produccion">
-                <div class="card-prod-header">
-                    <span class="card-prod-nombre"><?= htmlspecialchars($torta['nombre_prod']) ?></span>
-                    <span class="card-prod-fecha"><?= $torta['fecha_prod'] ?? '' ?></span>
-                </div>
+                    <div class="card-prod-header">
+                        <span class="card-prod-nombre">
+                            <?= htmlspecialchars($torta['nombre_prod']) ?>
+                        </span>
+
+                        <span class="card-prod-fecha">
+                            <?= date('d/m/Y H:i', strtotime($torta['hora_agotada'])) ?>
+                        </span>
+                    </div>
                 <div class="card-prod-footer">
                     <span>Cantidad: <?= $torta['cantidad_prod'] ?></span>
                     <span><?= htmlspecialchars($torta['nombre_turno']) ?></span>

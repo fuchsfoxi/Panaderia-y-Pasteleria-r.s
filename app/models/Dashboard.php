@@ -48,6 +48,6 @@ class Dashboard {
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $fila ? $fila['nombre_turno'] : '';
+        return $fila['nombre_turno'] ?? 'Sin registros';
     }
 }

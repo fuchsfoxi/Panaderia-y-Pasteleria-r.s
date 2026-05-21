@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/stock_css/stock_panes.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/app/views/layouts/menu_Ingres.php">
 </head>
 <body>
     <?php include __DIR__ . '/../layouts/menu.php'; ?>  
@@ -51,7 +50,10 @@
         <div class="card-produccion">
             <div class="card-prod-header">
                 <span class="card-prod-nombre"><?= htmlspecialchars($pan['nombre_prod']) ?></span>
-                <span class="card-prod-fecha"><?= $pan['fecha_prod'] ?? '' ?></span>
+                <span class="card-prod-fecha">
+                    <?= date('d/m/Y H:i', strtotime($pan['hora_agotada'])) ?>
+                </span>
+
             </div>
             <div class="card-prod-footer">
                 <span>Latas: <?= $pan['cantidad_prod'] ?></span>
