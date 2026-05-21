@@ -32,7 +32,18 @@
             <div class="carta_historial">
                 <div class="carta_historial_header">
                     <span class="carta_historial_nombre">
-                        <i class="fa-solid fa-bread-slice"></i>
+                            <span class="carta_historial_nombre">
+                                <?php if ($item['tipo'] === 'Pan'): ?>
+                                    <i class="fa-solid fa-bread-slice"></i>
+                                <?php elseif ($item['tipo'] === 'Bocadito'): ?>
+                                    <i class="fa-solid fa-cookie"></i>
+                                <?php elseif ($item['tipo'] === 'Torta'): ?>
+                                    <i class="fa-solid fa-cake-candles"></i>
+                                <?php else: ?>
+                                    <i class="fa-solid fa-box"></i>
+                                <?php endif; ?>
+                                <?= htmlspecialchars($item['nombre_prod']) ?>
+                            </span>
                         <?= htmlspecialchars($item['nombre_prod']) ?>
                     </span>
                     <span class="carta_historial_fecha">
