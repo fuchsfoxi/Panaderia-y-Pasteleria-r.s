@@ -13,6 +13,7 @@ class StockController extends Controller {
         }
         $this->view('stock/stock');
     }
+    
 
     public function panes(): void {
         if (!isset($_SESSION['usuario'])) {
