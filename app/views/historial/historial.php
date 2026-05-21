@@ -31,26 +31,24 @@
         <?php foreach ($registros as $item): ?>
             <div class="carta_historial">
                 <div class="carta_historial_header">
-                    <span class="carta_historial_nombre">
-                            <span class="carta_historial_nombre">
-                                <?php if ($item['tipo'] === 'Pan'): ?>
-                                    <i class="fa-solid fa-bread-slice"></i>
-                                <?php elseif ($item['tipo'] === 'Bocadito'): ?>
-                                    <i class="fa-solid fa-cookie"></i>
-                                <?php elseif ($item['tipo'] === 'Torta'): ?>
-                                    <i class="fa-solid fa-cake-candles"></i>
-                                <?php else: ?>
-                                    <i class="fa-solid fa-box"></i>
-                                <?php endif; ?>
-                                <?= htmlspecialchars($item['nombre_prod']) ?>
-                            </span>
-                        <?= htmlspecialchars($item['nombre_prod']) ?>
-                    </span>
-                    <span class="carta_historial_fecha">
-                        <i class="fa-regular fa-calendar"></i>
-                        <?= $item['fecha'] ?? '' ?>
-                    </span>
-                </div>
+                        <span class="carta_historial_nombre">
+                            <?php if ($item['tipo'] === 'Pan'): ?>
+                                <i class="fa-solid fa-bread-slice"></i>
+                            <?php elseif ($item['tipo'] === 'Bocadito'): ?>
+                                <i class="fa-solid fa-cookie"></i>
+                            <?php elseif ($item['tipo'] === 'Torta'): ?>
+                                <i class="fa-solid fa-cake-candles"></i>
+                            <?php else: ?>
+                                <i class="fa-solid fa-box"></i>
+                            <?php endif; ?>
+                            <?= htmlspecialchars($item['nombre_prod']) ?>
+                        </span>
+                        <!-- ← BORRA LA LÍNEA SUELTA QUE ESTABA AQUÍ -->
+                        <span class="carta_historial_fecha">
+                            <i class="fa-regular fa-calendar"></i>
+                            <?= $item['fecha'] ?? '' ?>
+                        </span>
+                    </div>
                 <div class="carta_historial_footer">
                     <div class="carta_historial_info">
                         <span>Latas: <?= $item['cantidad_prod'] ?></span>

@@ -22,4 +22,19 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('✅ dropdown.js cargado');
 console.log('li.dropdown encontrados:', document.querySelectorAll('.sidebar > ul > li.dropdown').length);
 
+
+// Toggle sidebar
+const hamburger = document.querySelector('.hamburger');
+const sidebar   = document.querySelector('.sidebar');
+const overlay   = document.querySelector('.overlay');
+
+if (hamburger) hamburger.addEventListener('click', () => {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+});
+
+if (overlay) overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+});
 });

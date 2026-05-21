@@ -30,11 +30,12 @@
                 <span>Stock</span>
             </a>
                 <ul class="sub-menu">
-                    <li><a href="<?php echo BASE_URL;?>/app/views/stock/Stock_panes.php">Panes</a></li>
-                    <li><a href="<?php echo BASE_URL;?>/app/views/stock/stock_bocaditos.php">Bocaditos</a></li>
-                    <li><a href="<?php echo BASE_URL;?>/app/views/stock/stock_tortas.php">Tortas</a></li>
+                    <li><a href="<?php echo BASE_URL;?>/stock/panes">Panes</a></li>
+                    <li><a href="<?php echo BASE_URL;?>/stock/bocaditos">Bocaditos</a></li>
+                    <li><a href="<?php echo BASE_URL;?>/stock/tortas">Tortas</a></li>
                 </ul>
         </li>
+        
         <li>
             <a href="<?php echo BASE_URL; ?>/historial" class="<?php echo $rutaActual === 'historial' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-clock-rotate-left"></i>
