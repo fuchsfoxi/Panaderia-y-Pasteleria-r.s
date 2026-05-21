@@ -16,26 +16,22 @@ class Dashboard {
      * Resultado ejemplo:
      * [ ['tipo' => 'Pan', 'total' => 320], ['tipo' => 'Torta', 'total' => 5], ... ]
      */
-    public function totalesPorDia(string $dia): array {
-        $fecha = ($dia === 'yesterday')
-            ? date('Y-m-d', strtotime('-1 day'))
-            : date('Y-m-d');
+        public function totalesPorDia(string $dia): array {
+            $sql = "SELECT 
+                        tipo.tipo,
+                        SUM(produccion.cantidad_prod) AS total
+                    FROM produccion
+                    JOIN producto ON produccion.id_producto = producto.id_producto
+                    JOIN tipo ON producto.id_tipo = tipo.id_tipo
+                    WHERE DATE(produccion.hora_agotada) = CURDATE()
+                    GROUP BY tipo.tipo";
 
-        $sql = "SELECT 
-                    tipo.tipo,
-                    SUM(produccion.cantidad_prod) AS total
-                FROM produccion
-                JOIN producto ON produccion.id_producto = producto.id_producto
-                JOIN tipo     ON producto.id_tipo       = tipo.id_tipo
-                WHERE DATE(produccion.hora_agotada) = ?
-                GROUP BY tipo.tipo";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
 
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$fecha]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    /**
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        /**
      * Devuelve el nombre del último turno registrado en produccion.
      */
     public function ultimoTurno(): string {
