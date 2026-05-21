@@ -428,6 +428,28 @@ main > .main-content { display: none; }
 
 .grafico_contenido canvas { max-width: 100%; }
 
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 20px;
+    margin-top: 32px;
+    text-align: center;
+}
+
+.footer-brand {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text);
+    opacity: 0.6;
+}
+
+.footer-copy {
+    font-size: 0.65rem;
+    color: var(--text);
+    opacity: 0.45;
+}
 
 /* ═══════════════════════════════════════════════════════════
    TABLET / DESKTOP  (≥ 768px)

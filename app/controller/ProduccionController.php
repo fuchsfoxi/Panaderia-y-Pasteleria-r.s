@@ -5,21 +5,6 @@ require_once __DIR__ . '/../models/Producto.php';
 require_once __DIR__ . '/../models/Turno.php';
 
 class ProduccionController extends Controller {
-    
-    public function index(): void {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: " . BASE_URL . "/login");
-            exit();
-        }
-
-        $modelo = new Produccion();
-        $datos = [
-            'panes'     => $modelo->obtenerProduccion('Pan'),
-            'bocaditos' => $modelo->obtenerProduccion('Bocadito'),
-            'tortas'    => $modelo->obtenerProduccion('Torta'),
-        ];
-        $this->view('stock/stock', $datos);
-    }
 
     public function crear(): void {
         if (!isset($_SESSION['usuario'])) {
@@ -28,15 +13,12 @@ class ProduccionController extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $coches = (int)($_POST['cantidad_coches'] ?? 0);
-            $latas  = (int)($_POST['cantidad_latas'] ?? 0);
+            $cantidad = (int)($_POST['cantidad'] ?? 0);
 
-            if ($coches === 0 && $latas === 0) {
+            if ($cantidad === 0) {
                 header("Location: " . BASE_URL . "/produccion/crear?error=1");
                 exit();
             }
-
-            $cantidad = $coches + $latas;
 
             $modelo = new Produccion();
             $modelo->insertar(
@@ -44,13 +26,15 @@ class ProduccionController extends Controller {
                 (int)$_POST['id_producto'],
                 (int)$_POST['id_turno']
             );
-            header("Location: " . BASE_URL . "/historial");
+            header("Location: " . BASE_URL . "/produccion/crear");
             exit();
         }
 
+        $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductos(),
+            'productos' => (new Producto())->obtenerProductosPorTipo('Pan'),
             'turnos'    => (new Turno())->obtenerTurnos(),
+            'panes'     => $modelo->obtenerProduccion('Pan'),
         ];
         $this->view('stock/stock_panes', $datos);
     }

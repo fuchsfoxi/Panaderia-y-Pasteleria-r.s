@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/stock_css/stock_panes.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/app/views/layouts/menu_Ingres.php">
 </head>
 <body>
-    <?php include __DIR__ . '/../layouts/menu.php'; ?>
-
-    <form action="<?= BASE_URL ?>/produccion/crear" method="POST">
+    <?php include __DIR__ . '/../layouts/menu.php'; ?>  
+<main>
+    <form action="<?= BASE_URL ?>/stock/guardar" method="POST">
+    <input type="hidden" name="tipo" value="Pan">
         
         <div class="stock_Panes">
             <label for="cantidad">Cantidad</label>
@@ -42,6 +45,24 @@
 
         <button type="submit">Guardar</button>
     </form>
+
+    <div class="cards-produccion">
+    <?php foreach ($panes as $pan): ?>
+        <div class="card-produccion">
+            <div class="card-prod-header">
+                <span class="card-prod-nombre"><?= htmlspecialchars($pan['nombre_prod']) ?></span>
+                <span class="card-prod-fecha"><?= $pan['fecha_prod'] ?? '' ?></span>
+            </div>
+            <div class="card-prod-footer">
+                <span>Latas: <?= $pan['cantidad_prod'] ?></span>
+                <span><?= htmlspecialchars($pan['nombre_turno']) ?></span>
+            </div>
+        </div>
+    <?php endforeach; ?>
+        
+    
+</div>
+</main>
 <?php include __DIR__ . '/../layouts/footer.php'; ?>
 <script src="<?php echo BASE_URL; ?>/public/js/dropdown.js"></script>  
 </body>

@@ -1,0 +1,113 @@
+main {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    padding-top: 40px;
+    gap: 24px;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 32px 36px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stock_Panes {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stock_Panes label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #2d5e3a;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.stock_Panes input,
+.stock_Panes select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.8);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+    color: #0B2B26;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.stock_Panes input:focus,
+.stock_Panes select:focus {
+    border-color: #235347;
+}
+
+form button[type="submit"] {
+    align-self: center;
+    padding: 10px 40px;
+    background-color: #0B2B26;
+    color: #DAF1DE;
+    border: none;
+    border-radius: 999px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #235347;
+    transform: translateY(-1px);
+}
+
+.cards-produccion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.card-produccion {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.card-prod-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.card-prod-nombre {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #0B2B26;
+}
+
+.card-prod-fecha {
+    font-size: 0.78rem;
+    color: #938b8b;
+}
+
+.card-prod-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #938b8b;
+}
