@@ -147,10 +147,10 @@ INSERT INTO produccion (cantidad_prod, hora_agotada, id_producto, id_turno) VALU
 
 ```
 ### Diagrama Entidad-Relacion (DER)
-# POR INGRESAR 
+#### POR INGRESAR 
 
 ### Modelo Relacional (MR)
-# POR INGRESAR 
+#### POR INGRESAR 
 
 ### Cardinalidades
-# POR INGRESAR
+#### POR INGRESAR
