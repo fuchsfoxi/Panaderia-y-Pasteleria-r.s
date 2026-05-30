@@ -62,7 +62,7 @@ SOLUCIOÓN:  La solución que se planteo es hacer un sistema que permita gestion
      3. El sistema debe permitir realizar modificaciones sin 	afectar 	el sistema 
 
 ## BASE DE DATOS
-
+```sql
 create database panaderia_rs;
 use  panaderia_rs;
 
@@ -145,7 +145,7 @@ INSERT INTO produccion (cantidad_prod, hora_agotada, id_producto, id_turno) VALU
 (90, NULL, 7, 2),
 (30, '2026-05-11 22:45:00', 8, 2);
 
-
+´´´
 
 
 
