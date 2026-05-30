@@ -12,6 +12,10 @@ Además, la empresa también produce tortas y bocaditos, los cuales se registran
 
 Justificacin: se nesecita un sistema para gestonar los datos del sotck del dia y turno 
 
+## IMAGENES DEL PROBLEMA Y DE NEGOCIO 
+
+ #### - POR INGRESAR -
+
 ## IDENTIFICAR EL PROBLEMA Y SOLUCION 
 
 PROBLEMATICA: Actualmente la empresa registra su producción de manera manual en hojas de papel. En estos registros se anota la cantidad de panes producidos en cada turno y cuándo se terminan. lo cual tiene el peligro de dañarse, perderse o tener algun daño al que no se puede anticipar.
