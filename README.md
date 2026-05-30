@@ -146,7 +146,11 @@ INSERT INTO produccion (cantidad_prod, hora_agotada, id_producto, id_turno) VALU
 (30, '2026-05-11 22:45:00', 8, 2);
 
 ```
-## DIAGRAMA DE ENTIDAD RELACIOM
+### Diagrama Entidad-Relacion (DER)
+# POR INGRESAR 
 
+### Modelo Relacional (MR)
+# POR INGRESAR 
 
-
+### Cardinalidades
+# POR INGRESAR
