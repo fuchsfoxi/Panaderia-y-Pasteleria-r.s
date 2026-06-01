@@ -57,6 +57,7 @@
                             <?= date('d/m/Y H:i', strtotime($torta['hora_agotada'])) ?>
                         </span>
                     </div>
+                    
                 <div class="card-prod-footer">
                     <span>Cantidad: <?= $torta['cantidad_prod'] ?></span>
                     <span><?= htmlspecialchars($torta['nombre_turno']) ?></span>

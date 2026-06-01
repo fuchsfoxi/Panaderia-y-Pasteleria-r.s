@@ -227,6 +227,11 @@ body{
 /* RESPONSIVE CELULAR */
 @media (max-width: 768px){
 
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
     .boton_iniciar_Session{
         top: 15px;
         right: 15px;
@@ -234,12 +239,16 @@ body{
 
     .img_landing img{
         height: 250px;
+        width: 100%;
+        max-width: 100vw;
     }
 
     .titulo_landing{
         text-align: center;
         font-size: 0.95em;
         padding: 16px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .carta_general_landing{
@@ -248,6 +257,9 @@ body{
         gap: 30px;
         margin-top: 40px;
         padding: 20px;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     .card{
@@ -255,14 +267,18 @@ body{
         max-width: 340px;
         height: auto;
         min-height: 380px;
+        box-sizing: border-box;
     }
 
     .content{
         padding: 28px;
+        overflow: hidden;
     }
 
     .content .para{
         font-size: 16px;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
 }

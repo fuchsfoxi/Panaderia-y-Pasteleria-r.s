@@ -1,9 +1,10 @@
-.historial_contenido {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 120px 24px 32px 24px;
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Formulario de filtros */
@@ -242,26 +243,40 @@
 
 
 @media (max-width: 768px) {
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
     .historial_contenido {
         padding-top: 70px;
         padding-right: 16px;
         padding-bottom: 32px;
         padding-left: 16px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
-}
 
     .historial_contenido form {
         flex-direction: column;
         gap: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     .historial_contenido form input,
     .historial_contenido form select {
         width: 100%;
+        box-sizing: border-box;
     }
 
     .carta_historial {
         padding: 14px 16px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .carta_historial_header {
@@ -292,4 +307,5 @@
         width: 100%;
         justify-content: flex-end;
     }
+}
 }

@@ -35,6 +35,16 @@ body {
     color: var(--text);
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+main {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 
 /* ═══════════════════════════════════════════════════════════
    TOPBAR  (solo móvil)
@@ -475,7 +485,18 @@ main > .main-content { display: none; }
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
 
-    main { padding: 20px 16px 60px; }
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    main { 
+        padding: 20px 16px 60px;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
 
     .tittel_dashboard h1 {
         font-size: 1.1rem;
@@ -485,16 +506,28 @@ main > .main-content { display: none; }
     .cards-grid {
         grid-template-columns: 1fr;
         gap: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
-    .card-individual { padding: 14px 16px; }
+    .card-individual { 
+        padding: 14px 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
     .card_content {
         min-width: 80px;
         font-size: 0.82rem;
     }
 
-    .grafico_contenido { min-height: 180px; }
+    .grafico_contenido { 
+        min-height: 180px;
+        overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 
@@ -503,7 +536,38 @@ main > .main-content { display: none; }
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 360px) {
 
-    .sidebar { width: 100%; }
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
 
-    main { padding: 16px 12px 48px; }
+    .sidebar { 
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    main { 
+        padding: 16px 12px 48px;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    .cards-grid {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .card-individual {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .grafico_contenido {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
 }

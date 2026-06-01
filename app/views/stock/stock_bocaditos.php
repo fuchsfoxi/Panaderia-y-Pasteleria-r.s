@@ -45,14 +45,14 @@
         <button type="submit">Guardar</button>
     </form>
 
-    <div class="cards-produccion">
-        <?php foreach ($bocaditos as $bocadito): ?>
+        <div class="cards-produccion">
+            <?php foreach ($bocaditos as $bocadito): ?>
             <div class="card-produccion">
                 <div class="card-prod-header">
                     <span class="card-prod-nombre"><?= htmlspecialchars($bocadito['nombre_prod']) ?></span>
                 <span class="card-prod-fecha">
-                <?= $bocadito['hora_agotada'] ?? '' ?>
-            </span>
+                    <?= date('d/m/Y H:i', strtotime($bocadito['hora_agotada'])) ?>
+                </span>
     </div>
                 <div class="card-prod-footer">
                     <span>Latas: <?= $bocadito['cantidad_prod'] ?></span>

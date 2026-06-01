@@ -14,7 +14,7 @@ class DashboardController extends Controller {
     }
 
     /**
-     * GET  /dashboard/datos
+     * GET  /dashboard/datos    
      * Devuelve JSON con totales de hoy, ayer y último turno.
      * Lo consume dashboard.js para llenar las cards y el gráfico.
      */

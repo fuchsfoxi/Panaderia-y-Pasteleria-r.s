@@ -1,9 +1,3 @@
-/* =========================================================
-   dashboard.js — Panadería y Pastelería R.S SAC
-   1. Toggle sidebar (hamburguesa)
-   2. Fetch /dashboard/datos → cards + gráfico Chart.js
-   ========================================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ─────────────────────────────────────────────────────
@@ -13,24 +7,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar   = document.querySelector('.sidebar');
     const overlay   = document.querySelector('.overlay');
 
-    function abrirSidebar() {
+    if (hamburger) hamburger.addEventListener('click', () => {
         sidebar.classList.add('open');
         overlay.classList.add('show');
-    }
+    });
 
-    function cerrarSidebar() {
+    if (overlay) overlay.addEventListener('click', () => {
         sidebar.classList.remove('open');
         overlay.classList.remove('show');
-    }
-
-    if (hamburger) hamburger.addEventListener('click', abrirSidebar);
-    if (overlay)   overlay.addEventListener('click', cerrarSidebar);
+    });
 
 
     /* ─────────────────────────────────────────────────────
-       2. FETCH DE DATOS  →  /dashboard/datos
+       2. CERRAR SESIÓN
     ───────────────────────────────────────────────────── */
-    const BASE_URL = window.BASE_URL || '';   // definido en index.php
+    document.getElementById('btn-logout')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (confirm('¿Seguro que deseas cerrar sesión?')) {
+            window.location.href = e.currentTarget.href;
+        }
+    });
+
+
+    /* ─────────────────────────────────────────────────────
+       3. FETCH DE DATOS  →  /dashboard/datos
+    ───────────────────────────────────────────────────── */
+    const BASE_URL = window.BASE_URL || '';
 
     async function cargarDatos() {
         try {
@@ -47,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ─────────────────────────────────────────────────────
-       3. LLENAR CARDS
+       4. LLENAR CARDS
     ───────────────────────────────────────────────────── */
     function llenarCards(data) {
-        const hoy  = data.hoy  || {};
+        const hoy   = data.hoy  || {};
         const turno = data.ultimo_turno || '';
 
         setCard('content_panes',     hoy['Pan']      ?? null);
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!el) return;
 
         if (valor === null || valor === '' || valor === 0 && !esTexto) {
-            el.textContent = '';          // activa el ::after "¡Ups! Sin datos"
+            el.textContent = '';
             return;
         }
 
@@ -78,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ─────────────────────────────────────────────────────
-       4. GRÁFICO DE BARRAS  (Chart.js)
+       5. GRÁFICO DE BARRAS  (Chart.js)
     ───────────────────────────────────────────────────── */
     function renderGrafico(data) {
         const canvas = document.getElementById('grafico_barras');
@@ -118,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { display: false },   // leyenda propia con los círculos del HTML
+                    legend: { display: false },
                     tooltip: {
                         callbacks: {
                             label: ctx => ` ${ctx.parsed.y} und.`
@@ -149,4 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Iniciar
     cargarDatos();
+
 });

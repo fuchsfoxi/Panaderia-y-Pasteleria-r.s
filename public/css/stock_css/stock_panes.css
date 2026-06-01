@@ -4,6 +4,8 @@ main {
     align-items: center;
     padding-top: 40px;
     gap: 24px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 form {
@@ -17,6 +19,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    box-sizing: border-box;
 }
 
 .stock_Panes {
@@ -110,4 +113,125 @@ form button[type="submit"]:hover {
     justify-content: space-between;
     font-size: 0.78rem;
     color: #938b8b;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TABLET / DESKTOP  (≥ 768px)
+   ═══════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+
+    .topbar { display: none; }
+
+    .sidebar { left: 0; }
+
+    .overlay { display: none !important; }
+
+    main {
+        margin-top: 0;
+        margin-left: var(--sidebar-w);
+        padding: 36px 32px 80px;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   MÓVIL  (≤ 600px)
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+
+    main { 
+        padding: 20px 16px 60px;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    form {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .tittel_dashboard h1 {
+        font-size: 1.1rem;
+        letter-spacing: 0.08em;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card-individual { 
+        padding: 14px 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card_content {
+        min-width: 80px;
+        font-size: 0.82rem;
+    }
+
+    .grafico_contenido { 
+        min-height: 180px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .cards-produccion {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card-produccion {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   MÓVIL MUY PEQUEÑO  (≤ 360px)
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 360px) {
+
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .sidebar { 
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    main { 
+        padding: 16px 12px 48px;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    form {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .cards-produccion {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card-produccion {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
