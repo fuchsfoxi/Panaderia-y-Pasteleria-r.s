@@ -20,6 +20,9 @@ Justificacin: se nesecita un sistema para gestonar los datos del sotck del dia y
 ![bocadito_ontrol](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/bocaditos_control.jpeg)
 ![pan_control](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/pan_control.jpeg)
 ![torta_control](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/tortas_control.jpeg)
+
+## TRELLO 
+![Trello](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/Trello_PHP.png)
  #### - POR INGRESAR -
 
 ## IDENTIFICAR EL PROBLEMA Y SOLUCION 
