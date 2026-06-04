@@ -1,10 +1,8 @@
-/* =========================================================
-   dashboard.css — Panadería y Pastelería R.S SAC
-   ========================================================= */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
-/* ─── RESET & VARIABLES ──────────────────────────────────── */
+
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +14,6 @@
     --text:         #0B2B26;
     --sidebar-w:    220px;
     --sidebar-bg:   #235347;
-    --submenu-bg:   #0e4a6a;
     --sidebar-line: rgba(255, 255, 255, 0.15);
     --muted:        #938b8b;
     --accent:       #4f46e5;
@@ -37,8 +34,7 @@ html, body {
     width: 100%;
 }
 
-/* ─── MAIN BASE ──────────────────────────────────────────── */
-/* ⚠️ SIN width:100% — eso bloqueaba el margin-left del sidebar */
+
 main {
     position: relative;
     overflow-x: hidden;
@@ -198,8 +194,7 @@ main > .main-content { display: none; }
     top: 0;
     left: 105%;
     width: 180px;
-    background-color: var(--submenu-bg);
-    border-radius: 8px;
+    background-color: var(--sidebar-bg);
     padding: 8px 0;
     opacity: 0;
     visibility: hidden;
@@ -466,6 +461,18 @@ li.dropdown.open > .sub-menu {
 
     .grafico_contenido {
         min-height: 180px;
+    }
+}
+
+@media (min-width: 768px) {
+    .topbar { display: none; }
+    .sidebar { left: 0; }
+    .overlay { display: none !important; }
+
+    main {
+        margin-top: 0;
+        margin-left: var(--sidebar-w);
+        padding: 36px 40px 80px;  /* ← solo sube el padding lateral de 32px a 40px */
     }
 }
 
