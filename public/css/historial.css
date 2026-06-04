@@ -1,3 +1,4 @@
+/* ─── BASE (todas las pantallas) ─────────────────────── */
 body, html {
     overflow-x: hidden;
     width: 100%;
@@ -6,8 +7,21 @@ body, html {
 body {
     font-family: 'Poppins', sans-serif;
 }
+.historial_contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 36px 32px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    width: 800px;         
+    max-width: 100%;       
+    margin-left: auto;
+    margin-right: auto;
+}
 
-/* Formulario de filtros */
+/* ─── Formulario de filtros ───────────────────────────── */
 .historial_contenido form {
     display: flex;
     flex-wrap: wrap;
@@ -53,7 +67,7 @@ body {
     background-color: #235347;
 }
 
-/* Cards */
+/* ─── Cards ───────────────────────────────────────────── */
 .carta_historial {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 16px;
@@ -63,6 +77,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;   
 }
 
 .carta_historial_header {
@@ -146,6 +162,7 @@ body {
 
 .btn-eliminar:hover { background: #fecaca; }
 
+/* ─── Modal ───────────────────────────────────────────── */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -156,9 +173,7 @@ body {
     align-items: center;
 }
 
-.modal-overlay.show {
-    display: flex;
-}
+.modal-overlay.show { display: flex; }
 
 .modal-box {
     background: #fff;
@@ -221,9 +236,7 @@ body {
 }
 
 .modal-campo input:focus,
-.modal-campo select:focus {
-    border-color: #235347;
-}
+.modal-campo select:focus { border-color: #235347; }
 
 .modal-guardar {
     align-self: center;
@@ -241,31 +254,29 @@ body {
 
 .modal-guardar:hover { background-color: #235347; }
 
+/* ─── DESKTOP (≥ 768px) ───────────────────────────────── */
+@media (min-width: 768px) {
+    main {
+        margin-left: var(--sidebar-w);
+        margin-top: 0;
+    }
+}
 
-@media (max-width: 768px) {
-    body, html {
-        overflow-x: hidden;
-        width: 100%;
+/* ─── MÓVIL (≤ 767px) ────────────────────────────────── */
+@media (max-width: 767px) {
+    main {
+        margin-left: 0;
+        margin-top: var(--topbar-h);
     }
 
     .historial_contenido {
-        margin-left: 220px;
-        padding: 32px 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        min-height: 100vh;
-        box-sizing: border-box;
+        padding: 20px 16px;
     }
 
-    .historial_contenido form {
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
-        box-sizing: border-box;
-        overflow-x: hidden;
-    }
+.historial_contenido form {
+    max-width: 700px;
+    margin: 0 auto;  
+}
 
     .historial_contenido form input,
     .historial_contenido form select {
@@ -275,8 +286,6 @@ body {
 
     .carta_historial {
         padding: 14px 16px;
-        width: 100%;
-        box-sizing: border-box;
     }
 
     .carta_historial_header {
@@ -306,35 +315,5 @@ body {
     .carta_historial_acciones {
         width: 100%;
         justify-content: flex-end;
-    }
-
-
-    
-}
-/* ── Corregir layout heredado del dashboard ── */
-@media (min-width: 768px) {
-    main {
-        margin-left: var(--sidebar-w); /* 220px — empuja el contenido fuera del sidebar */
-        margin-top: 0;
-    }
-
-    .historial_contenido {
-        max-width: 760px;
-        margin: 0 auto;
-        padding: 36px 32px;
-    }
-}
-
-/* ── Móvil ── */
-@media (max-width: 767px) {
-    main {
-        margin-left: 0;
-        margin-top: var(--topbar-h); /* 56px — espacio para la topbar */
-    }
-
-    .historial_contenido {
-        padding: 20px 16px;
-        width: 100%;
-        box-sizing: border-box;
     }
 }

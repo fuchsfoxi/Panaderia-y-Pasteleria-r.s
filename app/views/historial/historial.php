@@ -14,7 +14,7 @@
 </head>
 <body>
     <?php include __DIR__ . '/../layouts/menu.php'; ?>
-
+<main>
     <div class="historial_contenido">
 
         <form method="GET" action="<?= BASE_URL ?>/historial">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         <?php endforeach; ?>
-
+    </main>
     </div>
 
     <?php include __DIR__ . '/../layouts/footer.php'; ?>
