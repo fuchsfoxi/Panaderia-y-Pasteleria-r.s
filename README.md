@@ -13,7 +13,7 @@ Además, la empresa también produce tortas y bocaditos, los cuales se registran
 Justificacin: se nesecita un sistema para gestonar los datos del sotck del dia y turno 
 
 ## IMAGENES DEL PROBLEMA Y DE NEGOCIO 
-
+[pan_ontrol]()
  #### - POR INGRESAR -
 
 ## IDENTIFICAR EL PROBLEMA Y SOLUCION 
