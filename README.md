@@ -1,5 +1,5 @@
 ## sistema de produccion diaria 
-sistema web para el control de salida de producto para falicitar el amacenamiento del control diaria. desarrollado como proyecto final de proyecto de java web de senati 
+sistema web para el control de salida de producto para falicitar el amacenamiento del control diaria. desarrollado como proyecto final de proyecto programado con php usando la estructura MVC  
 
 ## descripcion de proyecto 
 Nombre: Panaderia  y Pasteleria Renzo
