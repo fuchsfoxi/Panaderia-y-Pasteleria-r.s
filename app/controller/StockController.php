@@ -57,7 +57,7 @@ class StockController extends Controller {
         $this->view('stock/stock_tortas', $datos);
     }
 
-    public function guardar(): void {
+public function guardar(): void {
     if (!isset($_SESSION['usuario'])) {
         header("Location: " . BASE_URL . "/login");
         exit();
@@ -66,8 +66,16 @@ class StockController extends Controller {
     $cantidad = (int)($_POST['cantidad'] ?? 0);
     $tipo     = $_POST['tipo'] ?? 'Pan';
 
+    $rutas = [
+        'Pan'      => 'panes',
+        'Bocadito' => 'bocaditos',
+        'Torta'    => 'tortas',
+    ];
+
+    $ruta = $rutas[$tipo] ?? 'panes';
+
     if ($cantidad === 0) {
-        header("Location: " . BASE_URL . "/stock/" . strtolower($tipo) . "s?error=1");
+        header("Location: " . BASE_URL . "/stock/" . $ruta . "?error=1");
         exit();
     }
 
@@ -78,7 +86,7 @@ class StockController extends Controller {
         (int)$_POST['id_turno']
     );
 
-    header("Location: " . BASE_URL . "/stock/" . strtolower($tipo) . "s");
+    header("Location: " . BASE_URL . "/stock/" . $ruta);
     exit();
 }
 }

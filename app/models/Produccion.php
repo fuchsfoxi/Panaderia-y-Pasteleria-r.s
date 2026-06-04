@@ -21,16 +21,15 @@ public function obtenerProduccion(?string $tipo = null): array {
             JOIN producto ON produccion.id_producto = producto.id_producto
             JOIN tipo ON producto.id_tipo = tipo.id_tipo
             JOIN turno ON produccion.id_turno = turno.id_turno";
-
     if ($tipo !== null) {
-        $sql .= " WHERE tipo.tipo = ?";
+        $sql .= " WHERE tipo.tipo = ? ORDER BY produccion.id_produccion DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$tipo]);
     } else {
+        $sql .= " ORDER BY produccion.id_produccion DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
     }
-
     return $stmt->fetchAll();
 }
 
