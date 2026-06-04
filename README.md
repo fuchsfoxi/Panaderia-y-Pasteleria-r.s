@@ -12,7 +12,11 @@ Además, la empresa también produce tortas y bocaditos, los cuales se registran
 
 Justificacin: se nesecita un sistema para gestonar los datos del sotck del dia y turno 
 
-## IMAGENES DEL PROBLEMA Y DE NEGOCIO 
+## IMAGENES DE LA EMPRESA 
+![empresa_cerca](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/foto_empresa.jpeg)
+![empresa_lejos](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/foto_empresa_2.jpeg)
+
+## IMAGENES DEL PROBLEMA 
 ![bocadito_ontrol](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/bocaditos_control.jpeg)
 ![pan_control](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/pan_control.jpeg)
 ![torta_control](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/tortas_control.jpeg)
