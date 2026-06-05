@@ -1,5 +1,7 @@
 FROM php:8.2-apache
 
+ARG CACHEBUST=1
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 RUN rm -f /etc/apache2/mods-enabled/mpm_event.conf \
