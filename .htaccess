@@ -15,3 +15,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Usamos ^(.+)$ con + para que solo aplique cuando hay algo en la URL (no raíz).
 # QSA preserva otros parámetros GET que puedan existir.
 RewriteRule ^(.+)$ app/index.php?url=$1 [QSA,L]
+
