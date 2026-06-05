@@ -1,7 +1,7 @@
 <?php 
-    $rutaActual = explode('/', trim($_GET['url'] ?? 'dashboard', '/'))[0] ?: 'dashboard';
+$usuario = $_SESSION['usuario'] ?? [];
+$rutaActual = explode('/', trim($_GET['url'] ?? 'dashboard', '/'))[0] ?: 'dashboard';
 ?>
-
 <div class="topbar">
     <div class="title-business">
         <span><?php echo htmlspecialchars($usuario['nombre_usuario'] ?? 'Usuario'); ?></span>
@@ -12,9 +12,7 @@
         </button>
     </div>
 </div>
-
 <div class="overlay"></div>
-
 <aside class="sidebar">
     <div class="sidebar-logo"><?php echo htmlspecialchars($usuario['nombre_usuario'] ?? 'Usuario'); ?></div>
     <ul>
@@ -29,27 +27,24 @@
                 <i class="fa-solid fa-boxes-stacked"></i>
                 <span>Stock</span>
             </a>
-                <ul class="sub-menu">
-                    <li><a href="<?php echo BASE_URL;?>/stock/panes">Panes</a></li>
-                    <li><a href="<?php echo BASE_URL;?>/stock/bocaditos">Bocaditos</a></li>
-                    <li><a href="<?php echo BASE_URL;?>/stock/tortas">Tortas</a></li>
-                </ul>
+            <ul class="sub-menu">
+                <li><a href="<?php echo BASE_URL; ?>/stock/panes">Panes</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/stock/bocaditos">Bocaditos</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/stock/tortas">Tortas</a></li>
+            </ul>
         </li>
-        
         <li>
             <a href="<?php echo BASE_URL; ?>/historial" class="<?php echo $rutaActual === 'historial' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-clock-rotate-left"></i>
-                <span>Historial</span>  
+                <span>Historial</span>
             </a>
         </li>
-
         <li>
             <a href="<?php echo BASE_URL; ?>/producto" class="<?php echo $rutaActual === 'producto' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span>Productos</span>
             </a>
         </li>
-
         <li class="nav-logout">
             <a href="<?php echo BASE_URL; ?>/logout" id="btn-logout">
                 <i class="fa-solid fa-right-from-bracket"></i>
