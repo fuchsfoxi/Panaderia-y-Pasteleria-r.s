@@ -1,10 +1,9 @@
 FROM php:8.2-apache
 
-# Deshabilitar MPM event y activar solo prefork (evita el conflicto)
-RUN a2dismod mpm_event && a2enmod mpm_prefork
-
-# Habilitar mod_rewrite para MVC
-RUN a2enmod rewrite
+# Desactivar todos los MPM primero y activar solo prefork
+RUN apt-get update && apt-get install -y libapache2-mod-php8.2 2>/dev/null; \
+    a2dismod mpm_event mpm_worker 2>/dev/null; \
+    a2enmod mpm_prefork rewrite
 
 # Copiar todo el proyecto
 COPY . /var/www/html/
