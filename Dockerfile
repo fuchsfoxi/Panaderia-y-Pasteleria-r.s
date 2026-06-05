@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM ubuntu:22.04
 
 # Desactivar todos los MPM primero y activar solo prefork
 RUN apt-get update && apt-get install -y libapache2-mod-php8.2 2>/dev/null; \
