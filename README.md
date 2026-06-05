@@ -125,11 +125,7 @@ INSERT INTO tipo (tipo) VALUES
 ('Pan'),
 ('Torta'),
 ('Bocadito'),
-('Pastel'),
-('Galleta'),
-('Empanada'),
-('Croissant'),
-('Queque');
+
 
 -- Producto
 INSERT INTO producto (nombre_prod, id_tipo) VALUES
