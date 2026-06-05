@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../core/Controller.php';
 require_once __DIR__ . '/../models/Producto.php';
 
@@ -11,9 +10,12 @@ class ProductoController extends Controller {
             exit();
         }
         $modelo = new Producto();
-        $datos = ['productos' => $modelo->obtenerProductos()];
-        $this->view('producto/index', $datos);
-    } 
+        $datos = [
+            'productos'  => $modelo->obtenerProductos(),
+            'rutaActual' => 'producto'
+        ];
+        $this->view('Ingresos_datos/New_producto', $datos);
+    }
 
     public function crear(): void {
         if (!isset($_SESSION['usuario'])) {
@@ -27,7 +29,7 @@ class ProductoController extends Controller {
             exit();
         }
         $this->view('producto/crear');
-    } // ← cierra crear
+    }
 
     public function editar(int $id): void {
         if (!isset($_SESSION['usuario'])) {
@@ -50,7 +52,7 @@ class ProductoController extends Controller {
         }
         $modelo = new Producto();
         $modelo->eliminar($id);
-        header("Location: " . BASE_URL . "/");
+        header("Location: " . BASE_URL . "/producto");
         exit();
     }
 }

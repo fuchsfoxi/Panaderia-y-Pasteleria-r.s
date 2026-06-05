@@ -11,23 +11,24 @@
 </head>
 <body>
     <?php include __DIR__ . '/../layouts/menu.php'; ?>
-<main>
-    <div class="historial_contenido">
 
-        <form method="GET" action="<?= BASE_URL ?>/historial">
-            <input type="date" name="fecha" id="fecha_historial">
-            <select name="tipo" id="producto_filtrar">
-                <option value="todos">Todos los productos</option>
-                <option value="Pan">Panes</option>
-                <option value="Bocadito">Bocaditos</option>
-                <option value="Torta">Tortas</option>
-            </select>
-            <button type="submit">Buscar</button>
-        </form>
+    <main>
+        <div class="historial_contenido">
 
-        <?php foreach ($registros as $item): ?>
-            <div class="carta_historial">
-                <div class="carta_historial_header">
+            <form method="GET" action="<?= BASE_URL ?>/historial">
+                <input type="date" name="fecha" id="fecha_historial">
+                <select name="tipo" id="producto_filtrar">
+                    <option value="todos">Todos los productos</option>
+                    <option value="Pan">Panes</option>
+                    <option value="Bocadito">Bocaditos</option>
+                    <option value="Torta">Tortas</option>
+                </select>
+                <button type="submit">Buscar</button>
+            </form>
+
+            <?php foreach ($registros as $item): ?>
+                <div class="carta_historial">
+                    <div class="carta_historial_header">
                         <span class="carta_historial_nombre">
                             <?php if ($item['tipo'] === 'Pan'): ?>
                                 <i class="fa-solid fa-bread-slice"></i>
@@ -40,35 +41,35 @@
                             <?php endif; ?>
                             <?= htmlspecialchars($item['nombre_prod']) ?>
                         </span>
-                        <!-- ← BORRA LA LÍNEA SUELTA QUE ESTABA AQUÍ -->
                         <span class="carta_historial_fecha">
                             <i class="fa-regular fa-calendar"></i>
                             <?= $item['fecha'] ?? '' ?>
                         </span>
                     </div>
-                <div class="carta_historial_footer">
-                    <div class="carta_historial_info">
-                        <span>Latas: <?= $item['cantidad_prod'] ?></span>
-                    </div>
-                    <span class="carta_historial_info"><?= htmlspecialchars($item['nombre_turno']) ?></span>
-                    <div class="carta_historial_acciones">
-                        <button class="btn-editar btn-editar-modal"
-                            data-id="<?= $item['id_produccion'] ?>"
-                            data-cantidad="<?= $item['cantidad_prod'] ?>"
-                            data-turno="<?= $item['id_turno'] ?>"
-                            data-producto="<?= $item['id_producto'] ?>"
-                            data-fecha="<?= $item['fecha_raw'] ?? '' ?>">
-                            <i class="fa-solid fa-pen"></i> Editar
-                        </button>
-                        <a href="<?= BASE_URL ?>/produccion/eliminar/<?= $item['id_produccion'] ?>" class="btn-eliminar">
-                            <i class="fa-solid fa-trash"></i> Eliminar
-                        </a>
+                    <div class="carta_historial_footer">
+                        <div class="carta_historial_info">
+                            <span>Latas: <?= $item['cantidad_prod'] ?></span>
+                        </div>
+                        <span class="carta_historial_info"><?= htmlspecialchars($item['nombre_turno']) ?></span>
+                        <div class="carta_historial_acciones">
+                            <button class="btn-editar btn-editar-modal"
+                                data-id="<?= $item['id_produccion'] ?>"
+                                data-cantidad="<?= $item['cantidad_prod'] ?>"
+                                data-turno="<?= $item['id_turno'] ?>"
+                                data-producto="<?= $item['id_producto'] ?>"
+                                data-fecha="<?= $item['fecha_raw'] ?? '' ?>">
+                                <i class="fa-solid fa-pen"></i> Editar
+                            </button>
+                            <a href="<?= BASE_URL ?>/produccion/eliminar/<?= $item['id_produccion'] ?>" class="btn-eliminar">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+
+        </div>
     </main>
-    </div>
 
     <?php include __DIR__ . '/../layouts/footer.php'; ?>
 
@@ -104,6 +105,7 @@
                     <label>Fecha</label>
                     <input type="date" name="hora_agotada" id="modal_fecha">
                 </div>
+                <!-- BOTÓN GUARDAR -->
                 <button type="submit" class="modal-guardar">Guardar</button>
             </form>
         </div>

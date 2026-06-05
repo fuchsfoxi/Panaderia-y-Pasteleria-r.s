@@ -1,0 +1,150 @@
+/* ===== GENERAL ===== */
+main {
+    padding: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ===== BOTÓN NUEVO PRODUCTO ===== */
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.2rem;
+}
+.btn-nuevo {
+    background: white;
+    border: 2px solid #222;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: #222;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.btn-nuevo:hover { background: #f0f0f0; }
+
+/* ===== FILTROS ===== */
+.filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+.btn-filtro {
+    background: white;
+    border: 2px solid #222;
+    border-radius: 10px;
+    padding: 10px 28px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #222;
+    flex: 1;
+    min-width: 80px;
+    transition: background 0.15s;
+}
+.btn-filtro:hover,
+.btn-filtro.activo { background: #c8e6cc; }
+
+/* ===== TARJETAS ===== */
+.lista-productos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.card-producto {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.card-icono {
+    font-size: 24px;
+    min-width: 32px;
+    text-align: center;
+}
+.card-info {
+    flex: 1;
+    min-width: 0;
+}
+.card-nombre {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-tipo { font-size: 13px; color: #888; }
+
+/* ===== BOTONES EDITAR / ELIMINAR ===== */
+.card-acciones {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.btn-editar-card {
+    background: #c8bff7;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3d2f9e;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.btn-eliminar-card {
+    background: #f7c5cc;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #9e2f3d;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.btn-editar-card:hover   { background: #b3a8f5; }
+.btn-eliminar-card:hover { background: #f5a8b3; }
+
+/* ===== TABLET (≤768px) ===== */
+@media (max-width: 768px) {
+    main { padding: 1rem; }
+    .btn-filtro { padding: 9px 16px; font-size: 14px; }
+    .card-producto { padding: 14px; gap: 12px; }
+    .btn-editar-card,
+    .btn-eliminar-card { padding: 7px 12px; font-size: 12px; }
+}
+
+/* ===== CELULAR (≤480px) ===== */
+@media (max-width: 480px) {
+    main { padding: 0.8rem; }
+
+    /* La tarjeta se parte en 2 filas */
+    .card-producto { flex-wrap: wrap; }
+    .card-info { min-width: calc(100% - 46px); }
+
+    /* Botones ocupan todo el ancho abajo */
+    .card-acciones {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+    .btn-editar-card,
+    .btn-eliminar-card {
+        flex: 1;
+        text-align: center;
+        padding: 9px 8px;
+        font-size: 13px;
+    }
+    .btn-filtro { padding: 8px 10px; font-size: 13px; }
+}

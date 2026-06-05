@@ -42,6 +42,14 @@
                 <span>Historial</span>  
             </a>
         </li>
+
+        <li>
+            <a href="<?php echo BASE_URL; ?>/producto" class="<?php echo $rutaActual === 'producto' ? 'activo' : ''; ?>">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Productos</span>
+            </a>
+        </li>
+
         <li class="nav-logout">
             <a href="<?php echo BASE_URL; ?>/logout" id="btn-logout">
                 <i class="fa-solid fa-right-from-bracket"></i>
