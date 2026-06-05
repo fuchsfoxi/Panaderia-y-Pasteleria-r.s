@@ -39,10 +39,10 @@ class ProductoController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $modelo = new Producto();
             $modelo->actualizar($id, trim($_POST['nombre']), (int)$_POST['id_tipo']);
-            header("Location: " . BASE_URL . "/producto");
-            exit();
         }
-        $this->view('producto/editar', ['id' => $id]);
+        // GET o POST: siempre vuelve a la lista
+        header("Location: " . BASE_URL . "/producto");
+        exit();
     }
 
     public function eliminar(int $id): void {

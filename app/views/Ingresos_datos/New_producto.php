@@ -15,14 +15,15 @@
 
         <!-- BOTÓN NUEVO PRODUCTO -->
         <div class="top-bar">
-            <a href="<?= BASE_URL ?>/producto/crear" class="btn-nuevo">
+            <button class="btn-nuevo" id="btn-abrir-modal">
                 <i class="fa-solid fa-plus"></i> Nuevo Producto
-            </a>
+            </button>
         </div>
 
         <!-- FILTROS -->
         <div class="filtros">
-            <button class="btn-filtro activo" data-tipo="todos">PAN</button>
+            <button class="btn-filtro activo" data-tipo="todos">Todos</button>
+            <button class="btn-filtro" data-tipo="pan">Pan</button>
             <button class="btn-filtro" data-tipo="bocadito">Bocadito</button>
             <button class="btn-filtro" data-tipo="torta">Torta</button>
         </div>
@@ -30,40 +31,106 @@
         <!-- LISTA DE PRODUCTOS -->
         <div class="lista-productos" id="lista">
             <?php foreach ($productos as $p): ?>
-
             <div class="card-producto" data-tipo="<?= strtolower($p['tipo']) ?>">
 
-                <!-- ÍCONO SEGÚN TIPO -->
                 <div class="card-icono">
                     <?php if ($p['tipo'] === 'Pan'): ?>
-                        <img src="<?= BASE_URL ?>/public/img/icon_pan.svg" alt="Icono de pan" class="icono-pan">
+                        <img src="<?= BASE_URL ?>/public/img/icon_pan.svg" alt="Icono de pan" class="icono-tipo">
                     <?php elseif ($p['tipo'] === 'Bocadito'): ?>
-                        <img src="<?= BASE_URL ?>/public/img/icon_bocaditos.svg" alt="Icono de bocadito" class="icono-bocadito">
+                        <img src="<?= BASE_URL ?>/public/img/icon_bocaditos.svg" alt="Icono de bocadito" class="icono-tipo">
                     <?php elseif ($p['tipo'] === 'Torta'): ?>
-                        <img src="<?= BASE_URL ?>/public/img/icon_torta.svg" alt="Icono de torta" class="icono-torta">
+                        <img src="<?= BASE_URL ?>/public/img/icon_torta.svg" alt="Icono de torta" class="icono-tipo">
                     <?php endif; ?>
                 </div>
 
-                <!-- NOMBRE Y TIPO -->
                 <div class="card-info">
                     <h3 class="card-nombre"><?= htmlspecialchars($p['nombre_prod']) ?></h3>
                     <p class="card-tipo"><?= htmlspecialchars($p['tipo']) ?></p>
                 </div>
 
-                <!-- ACCIONES -->
                 <div class="card-acciones">
-                    <a href="<?= BASE_URL ?>/producto/editar/<?= $p['id_producto'] ?>" class="btn-editar-card">
+                    <a href="<?= BASE_URL ?>/producto/editar/<?= $p['id_producto'] ?>"
+                       class="btn-editar-card"
+                       data-id="<?= $p['id_producto'] ?>"
+                       data-nombre="<?= htmlspecialchars($p['nombre_prod']) ?>"
+                       data-tipo="<?= $p['id_tipo'] ?>">
                         <i class="fa-solid fa-pen"></i> Editar
                     </a>
-                    <a href="<?= BASE_URL ?>/producto/eliminar/<?= $p['id_producto'] ?>" class="btn-eliminar-card">
+                    <a href="<?= BASE_URL ?>/producto/eliminar/<?= $p['id_producto'] ?>"
+                       class="btn-eliminar-card">
                         <i class="fa-solid fa-trash"></i> Eliminar
                     </a>
                 </div>
 
-            </div><!-- fin .card-producto -->
-
+            </div>
             <?php endforeach; ?>
-        </div><!-- fin .lista-productos -->
+        </div>
+
+        <!-- MODAL NUEVO PRODUCTO -->
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2>Nuevo Producto</h2>
+                    <button class="modal-cerrar" id="btn-cerrar-modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <form action="<?= BASE_URL ?>/producto/crear" method="POST" class="modal-form">
+                    <div class="campo">
+                        <label for="nombre">Nombre del producto</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Pan de molde" required>
+                    </div>
+                    <div class="campo">
+                        <label for="id_tipo">Tipo de producto</label>
+                        <select id="id_tipo" name="id_tipo" required>
+                            <option value="" disabled selected>Selecciona un tipo</option>
+                            <option value="1">Pan</option>
+                            <option value="2">Torta</option>
+                            <option value="3">Bocadito</option>
+                        </select>
+                    </div>
+                    <div class="modal-acciones">
+                        <button type="button" class="btn-cancelar" id="btn-cancelar">Cancelar</button>
+                        <button type="submit" class="btn-guardar">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- MODAL EDITAR PRODUCTO -->
+        <div class="modal-overlay" id="modal-editar-overlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2>Editar Producto</h2>
+                    <button class="modal-cerrar" id="btn-cerrar-editar">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <form id="form-editar" action="" method="POST" class="modal-form">
+                    <div class="campo">
+                        <label for="nombre-editar">Nombre del producto</label>
+                        <input type="text" id="nombre-editar" name="nombre" placeholder="Ej: Pan de molde" required>
+                    </div>
+                    <div class="campo">
+                        <label for="tipo-editar">Tipo de producto</label>
+                        <select id="tipo-editar" name="id_tipo" required>
+                            <option value="" disabled>Selecciona un tipo</option>
+                            <option value="1">Pan</option>
+                            <option value="2">Torta</option>
+                            <option value="3">Bocadito</option>
+                        </select>
+                    </div>
+                    <div class="modal-acciones">
+                        <button type="button" class="btn-cancelar" id="btn-cancelar-editar">Cancelar</button>
+                        <button type="submit" class="btn-guardar">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
     </main>
     <?php include __DIR__ . '/../layouts/footer.php'; ?>

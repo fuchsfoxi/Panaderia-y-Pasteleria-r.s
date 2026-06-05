@@ -122,6 +122,100 @@ main {
     object-fit: contain;
 }
 
+/* ===== MODAL ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.modal-overlay.activo {
+    display: flex;
+}
+.modal {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 460px;
+    margin: 1rem;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.modal-header h2 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #222;
+}
+.modal-cerrar {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+}
+.modal-cerrar:hover { color: #222; }
+.modal-form .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 1.2rem;
+}
+.modal-form label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #444;
+}
+.modal-form input,
+.modal-form select {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    transition: border 0.15s;
+}
+.modal-form input:focus,
+.modal-form select:focus {
+    border-color: #a89eee;
+}
+.modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+.btn-cancelar {
+    background: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #555;
+}
+.btn-cancelar:hover { background: #e0e0e0; }
+.btn-guardar {
+    background: #c8bff7;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #3d2f9e;
+}
+.btn-guardar:hover { background: #b3a8f5; }
+
 /* ===== TABLET (≤768px) ===== */
 @media (max-width: 768px) {
     main {

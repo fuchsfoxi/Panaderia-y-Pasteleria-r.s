@@ -9,16 +9,17 @@ class Producto {
     }
 
     public function obtenerProductos(): array {
-    $sql = "SELECT 
-                producto.id_producto,
-                producto.nombre_prod,
-                tipo.tipo
-            FROM producto
-            JOIN tipo ON producto.id_tipo = tipo.id_tipo";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll();
-}
+        $sql = "SELECT 
+                    producto.id_producto,
+                    producto.nombre_prod,
+                    producto.id_tipo,
+                    tipo.tipo
+                FROM producto
+                JOIN tipo ON producto.id_tipo = tipo.id_tipo";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
     public function obtenerProductosPorTipo(string $tipo): array {
         $sql = "SELECT 
@@ -44,9 +45,14 @@ class Producto {
         return $stmt->execute([$nombre, $id_tipo, $id]);
     }
 
-    public function eliminar(int $id): bool {
-        $sql = "DELETE FROM producto WHERE id_producto = ?";
-        $stmt = $this->db->prepare($sql);
-        return $stmt->execute([$id]);
-    }
+public function eliminar(int $id): bool {
+
+    $sql1 = "DELETE FROM produccion WHERE id_producto = ?";
+    $stmt1 = $this->db->prepare($sql1);
+    $stmt1->execute([$id]);
+
+    $sql2 = "DELETE FROM producto WHERE id_producto = ?";
+    $stmt2 = $this->db->prepare($sql2);
+    return $stmt2->execute([$id]);
+}
 }
