@@ -1,14 +1,14 @@
 FROM php:8.2-apache
 
-# Copiar todo el proyecto
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Deshabilita MPMs en conflicto, deja solo prefork (necesario para mod_php)
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+    && a2enmod mpm_prefork \
+    && a2enmod rewrite
+
 COPY . /var/www/html/
-
-# Dar permisos y configurar Apache en un solo paso
-RUN chown -R www-data:www-data /var/www/html \
-    && a2enmod rewrite \
-    && echo '<Directory /var/www/html>\n\
-    AllowOverride All\n\
-    Require all granted\n\
-</Directory>' >> /etc/apache2/apache2.conf
-
+RUN chown -R www-data:www-data /var/www/html
+WORKDIR /var/www/html
 EXPOSE 80
+CMD ["apache2-foreground"]
