@@ -1,8 +1,8 @@
 /* ===== GENERAL ===== */
 main {
+    margin-left: 220px;
     padding: 1.5rem;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: calc(100% - 220px); /* usa todo el ancho disponible */
 }
 
 /* ===== BOTÓN NUEVO PRODUCTO ===== */
@@ -116,9 +116,19 @@ main {
 .btn-editar-card:hover   { background: #b3a8f5; }
 .btn-eliminar-card:hover { background: #f5a8b3; }
 
+.card-icono img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
 /* ===== TABLET (≤768px) ===== */
 @media (max-width: 768px) {
-    main { padding: 1rem; }
+    main {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 1rem;
+    }
     .btn-filtro { padding: 9px 16px; font-size: 14px; }
     .card-producto { padding: 14px; gap: 12px; }
     .btn-editar-card,
@@ -127,13 +137,13 @@ main {
 
 /* ===== CELULAR (≤480px) ===== */
 @media (max-width: 480px) {
-    main { padding: 0.8rem; }
-
-    /* La tarjeta se parte en 2 filas */
+    main {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 0.8rem;
+    }
     .card-producto { flex-wrap: wrap; }
     .card-info { min-width: calc(100% - 46px); }
-
-    /* Botones ocupan todo el ancho abajo */
     .card-acciones {
         width: 100%;
         justify-content: flex-end;

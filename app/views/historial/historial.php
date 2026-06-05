@@ -31,13 +31,11 @@
                     <div class="carta_historial_header">
                         <span class="carta_historial_nombre">
                             <?php if ($item['tipo'] === 'Pan'): ?>
-                                <i class="fa-solid fa-bread-slice"></i>
+                        <img src="<?= BASE_URL ?>/public/img/icon_pan.svg" alt="Icono de pan" class="icono-pan">
                             <?php elseif ($item['tipo'] === 'Bocadito'): ?>
-                                <i class="fa-solid fa-cookie"></i>
+                                <img src="<?= BASE_URL ?>/public/img/icon_bocaditos.svg" alt="Icono de bocadito" class="icono-bocadito">
                             <?php elseif ($item['tipo'] === 'Torta'): ?>
-                                <i class="fa-solid fa-cake-candles"></i>
-                            <?php else: ?>
-                                <i class="fa-solid fa-box"></i>
+                                <img src="<?= BASE_URL ?>/public/img/icon_torta.svg" alt="Icono de torta" class="icono-torta">
                             <?php endif; ?>
                             <?= htmlspecialchars($item['nombre_prod']) ?>
                         </span>
