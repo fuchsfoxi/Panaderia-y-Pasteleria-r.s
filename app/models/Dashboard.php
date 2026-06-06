@@ -46,4 +46,20 @@ class Dashboard {
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
         return $fila['nombre_turno'] ?? 'Sin registros';
     }
+
+
+    public function totalesMapeados(string $dia): array
+    {
+        $mapa = [
+            'Pan' => 0,
+            'Bocadito' => 0,
+            'Torta' => 0
+        ];
+
+        foreach ($this->totalesPorDia($dia) as $fila) {
+            $mapa[$fila['tipo']] = (int)$fila['total'];
+        }
+
+        return $mapa;
+    }
 }
