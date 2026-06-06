@@ -25,4 +25,14 @@ class DashboardController extends Controller {
 
         exit();
     }
+
+    public function index(): void
+{
+    if (!isset($_SESSION['usuario'])) {
+        header('Location: ' . BASE_URL . '/login');
+        exit;
+    }
+
+    $this->view('dashboard/index');
+}
 }
