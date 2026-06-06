@@ -1,14 +1,15 @@
 ## sistema de produccion diaria 
-sistema web para el control de salida de producto para falicitar el amacenamiento del control diaria. desarrollado como proyecto final de proyecto programado con php usando la estructura MVC  
+sistema web para el control de salida de producto para falicitar el amacenamiento del control diaria.
 
 ## descripcion de proyecto 
 Nombre: Panaderia  y Pasteleria Renzo
 Grio: venta de panificaciones, bocaditos, tortas y en una cafeteria <br>
 Tamaño: Pequeña empresa, operacion individual <br>
 
-Contexto: Actualmente la empresa registra su producción de manera manual en hojas de papel. En estos registros se anota la cantidad de panes producidos en cada turno y cuándo se terminan. La producción de pan se registra por latas, donde una lata puede contener varios panes del mismo tipo, pero cada pan pertenece únicamente a una lata. 
+Contexto: Actualmente la empresa registra su producción de manera manual en hojas de papel. En estos registros se anota la cantidad de panes producidos en cada turno y cuándo se terminan. 
+
 La panadería produce diferentes tipos de pan, como Ciabatti, carioco, francés y coliza, por lo que la información de producción puede volverse difícil de organizar cuando se registra manualmente. 
-Además, la empresa también produce tortas y bocaditos, los cuales se registran de forma similar, pero en hojas de papel separadas. Estos productos también se clasifican por tipos, aunque su producción se realiza en un solo turno.  <br>
+Además, la empresa también produce tortas y bocaditos, los cuales se registran de forma similar pero en hojas de papel separadas. Estos productos también se clasifican por tipos, aunque su producción se realiza en un solo turno.  <br>
 
 Justificacin: se nesecita un sistema para gestonar los datos del sotck del dia y turno 
 
@@ -59,7 +60,7 @@ SOLUCIOÓN:  La solución que se planteo es hacer un sistema que permita gestion
 1. USABILIDAD
    1. La interfaz del sistema debe ser sencilla e intuitiva para  los trabajadores
    2. El sistema debe mostrar la información de forma clara y organizada
-   3. El 	sistema debe mostrar mensajes claros cuando
+   3. El 	sistema debe mostrar mensajes claros cuando se guarde la informacion
  4. RENDIMIENTO
     1. El sistema debe registrar la producción en menos de 3 segundos
     2. El sistema debe permitir consultar la producción rápidamente
