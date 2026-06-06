@@ -111,5 +111,6 @@
 
     <script src="<?php echo BASE_URL; ?>/public/js/dropdown.js"></script>
     <script src="<?php echo BASE_URL; ?>/public/js/historial.js"></script>
+    <script> const BASE_URL = "<?= BASE_URL ?>"; </script>
 </body>
 </html>
