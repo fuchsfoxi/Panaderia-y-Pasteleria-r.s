@@ -46,7 +46,7 @@ main {
   margin-bottom: 16px;
 }
 
-#breadcrumb-page {
+.breadcrumb-page {
   color: var(--text);
 }
 

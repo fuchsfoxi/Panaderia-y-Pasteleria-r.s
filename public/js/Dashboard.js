@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ─────────────────────────────────────────────────────
-       1. TOGGLE SIDEBAR
-    ───────────────────────────────────────────────────── */
     const hamburger = document.querySelector('.hamburger');
     const sidebar   = document.querySelector('.sidebar');
     const overlay   = document.querySelector('.overlay');
@@ -18,9 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    /* ─────────────────────────────────────────────────────
-       2. CERRAR SESIÓN
-    ───────────────────────────────────────────────────── */
     document.getElementById('btn-logout')?.addEventListener('click', (e) => {
         e.preventDefault();
         if (confirm('¿Seguro que deseas cerrar sesión?')) {
@@ -29,9 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    /* ─────────────────────────────────────────────────────
-       3. FETCH DE DATOS  →  /dashboard/datos
-    ───────────────────────────────────────────────────── */
     const BASE_URL = window.BASE_URL || '';
 
     async function cargarDatos() {
@@ -48,9 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* ─────────────────────────────────────────────────────
-       4. LLENAR CARDS
-    ───────────────────────────────────────────────────── */
+
     function llenarCards(data) {
         const hoy   = data.hoy  || {};
         const turno = data.ultimo_turno || '';
@@ -79,9 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* ─────────────────────────────────────────────────────
-       5. GRÁFICO DE BARRAS  (Chart.js)
-    ───────────────────────────────────────────────────── */
+
+
     function renderGrafico(data) {
         const canvas = document.getElementById('grafico_barras');
         if (!canvas) return;
