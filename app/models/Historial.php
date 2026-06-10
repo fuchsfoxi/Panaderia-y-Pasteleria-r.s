@@ -9,7 +9,7 @@ class Historial {
         $this->db = Database::getConnection();
     }
 
-    public function obtenerTodo(?string $tipo = null, ?string $fecha = null): array {
+    public function btenerTodo(?string $tipo = null, ?string $fecha = null): array {
         $sql = "SELECT 
                     produccion.id_produccion,
                     produccion.id_producto,

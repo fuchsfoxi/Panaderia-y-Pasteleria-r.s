@@ -11,7 +11,7 @@ class Usuario {
     }
 
 
-        public function existeUsuario(string $nombre_usuario): bool {
+        public function ExisteUsuario(string $nombre_usuario): bool {
 
             $sql = "
                 SELECT COUNT(*)
@@ -25,7 +25,7 @@ class Usuario {
             return $stmt->fetchColumn() > 0;
         }
 
-            public function buscarPorNombre(string $nombre_usuario): array|false {
+            public function BuscarPorNombre(string $nombre_usuario): array|false {
 
                 $sql = "
                     SELECT 
@@ -52,7 +52,7 @@ class Usuario {
             }
 
 
-            public function listar_usuario(): array {
+            public function ListarUsuarios(): array {
 
                 $sql = "
                     SELECT
@@ -76,7 +76,7 @@ class Usuario {
                 return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
             }
 
-            public function insertar_usuario(
+            public function InsertarUsuario(
                 string $nombre_usuario,
                 string $clave,
                 int $id_rol,
@@ -104,7 +104,7 @@ class Usuario {
             }
 
 
-            public function cambiarEstado_usuario(
+            public function CambiarEstado_usuario(
                 int $id_usuario,
                 bool $estado
             ): bool {

@@ -10,7 +10,7 @@ class Turno {
         $this->db = Database::getConnection();
     }
 
-    public function obtenerTurnos(): array {
+    public function ObtenerTurnos(): array {
         $sql = "SELECT
                     id_turno,
                     nombre_turno
@@ -23,7 +23,7 @@ class Turno {
         return $stmt->fetchAll();
     }
 
-    public function insertar(
+    public function Insertar(
         string $nombre_turno
     ): bool {
 
@@ -38,7 +38,7 @@ class Turno {
         ]);
     }
 
-    public function actualizar(
+    public function Actualizar(
         int $id_turno,
         string $nombre_turno
     ): bool {
@@ -55,7 +55,7 @@ class Turno {
         ]);
     }
 
-        public function eliminar(int $id): bool {
+        public function Eliminar(int $id): bool {
 
             $sql = "DELETE FROM turno
                     WHERE id_turno = ?";
@@ -64,7 +64,7 @@ class Turno {
 
             return $stmt->execute([$id]);
         }
-        public function obtenerPorId(int $id): array|false {
+        public function ObtenerPorId(int $id): array|false {
 
         $sql = "SELECT *
                 FROM turno
@@ -76,7 +76,7 @@ class Turno {
         return $stmt->fetch();
     }
 
-        public function obtenerPorNombre(string $nombre_turno): array|false {
+        public function ObtenerPorNombre(string $nombre_turno): array|false {
 
             $sql = "SELECT *
                     FROM turno

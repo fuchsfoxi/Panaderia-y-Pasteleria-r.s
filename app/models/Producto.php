@@ -8,7 +8,7 @@ class Producto {
         $this->db = Database::getConnection();
     }
 
-    public function obtenerProductos(): array {
+    public function ObtenerProductos(): array {
         $sql = "SELECT 
                     producto.id_producto,
                     producto.nombre_prod,
@@ -21,7 +21,7 @@ class Producto {
         return $stmt->fetchAll();
     }
 
-    public function obtenerProductosPorTipo(string $tipo): array {
+    public function ObtenerProductosPorTipo(string $tipo): array {
         $sql = "SELECT 
                     producto.id_producto,
                     producto.nombre_prod
@@ -33,19 +33,19 @@ class Producto {
         return $stmt->fetchAll();
     }
 
-    public function insertar(string $nombre, int $id_tipo): bool {
+    public function Insertar(string $nombre, int $id_tipo): bool {
         $sql = "INSERT INTO producto (nombre_prod, id_tipo) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([$nombre, $id_tipo]);
     }
 
-    public function actualizar(int $id, string $nombre, int $id_tipo): bool {
+    public function Actualizar(int $id, string $nombre, int $id_tipo): bool {
         $sql = "UPDATE producto SET nombre_prod = ?, id_tipo = ? WHERE id_producto = ?";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([$nombre, $id_tipo, $id]);
     }
 
-public function eliminar(int $id): bool {
+public function Eliminar(int $id): bool {
 
     $sql1 = "DELETE FROM produccion WHERE id_producto = ?";
     $stmt1 = $this->db->prepare($sql1);

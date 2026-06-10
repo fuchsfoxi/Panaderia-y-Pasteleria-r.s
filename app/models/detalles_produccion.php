@@ -9,7 +9,7 @@ class DetalleProduccion {
         $this->db = Database::getConnection();
     }
 
-    public function obtenerDetallesProduccion(): array {
+    public function ObtenerDetallesProduccion(): array {
 
         $sql = "SELECT
                     dp.id_detalle,
@@ -36,7 +36,7 @@ class DetalleProduccion {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerPorId(int $id): array|false {
+    public function ObtenerPorId(int $id): array|false {
 
         $sql = "SELECT *
                 FROM detalle_produccion
@@ -48,7 +48,7 @@ class DetalleProduccion {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function insertar(
+    public function Insertar(
         int $id_produccion,
         int $id_producto,
         int $cantidad
@@ -67,7 +67,7 @@ class DetalleProduccion {
         ]);
     }
 
-    public function actualizar(
+    public function Actualizar(
         int $id_detalle,
         int $id_produccion,
         int $id_producto,
@@ -90,7 +90,7 @@ class DetalleProduccion {
         ]);
     }
 
-    public function eliminar(int $id): bool {
+    public function Eliminar(int $id): bool {
 
         $sql = "DELETE FROM detalle_produccion
                 WHERE id_detalle = ?";

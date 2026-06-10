@@ -12,7 +12,7 @@ Class Login{
     }
     
 
-    public function login(string $nombreUsuario, string $clave):array|false{
+    public function Login(string $nombreUsuario, string $clave):array|false{
 
         $sql = "SELECT * FROM usuario WHERE nombre_usuario = ?";
 

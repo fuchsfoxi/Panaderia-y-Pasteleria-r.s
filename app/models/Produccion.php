@@ -9,7 +9,7 @@ class Produccion {
         $this->db = Database::getConnection();
     }
 
-    public function obtenerProduccion(): array {
+    public function ObtenerProduccion(): array {
         $sql = "SELECT
                     p.id_produccion,
                     p.fecha_produccion,
@@ -27,7 +27,7 @@ class Produccion {
         return $stmt->fetchAll();
     }
 
-    public function insertar(
+    public function Insertar(
         string $fecha_produccion,
         int $id_turno,
         int $id_empleado
@@ -46,7 +46,7 @@ class Produccion {
         ]);
     }
 
-    public function actualizar(
+    public function Actualizar(
         int $id_produccion,
         string $fecha_produccion,
         int $id_turno,
@@ -69,7 +69,7 @@ class Produccion {
         ]);
     }
 
-    public function eliminar(int $id): bool {
+    public function Eliminar(int $id): bool {
         $sql = "DELETE FROM produccion
                 WHERE id_produccion = ?";
 

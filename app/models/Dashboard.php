@@ -16,7 +16,7 @@ class Dashboard {
      * Resultado ejemplo:
      * [ ['tipo' => 'Pan', 'total' => 320], ['tipo' => 'Torta', 'total' => 5], ... ]
      */
-        public function totalesPorDia(string $dia): array {
+        public function TotalesPorDia(string $dia): array {
             $sql = "SELECT 
                         tipo.tipo,
                         SUM(produccion.cantidad_prod) AS total
@@ -34,7 +34,7 @@ class Dashboard {
         /**
      * Devuelve el nombre del último turno registrado en produccion.
      */
-    public function ultimoTurno(): string {
+    public function UltimoTurno(): string {
         $sql = "SELECT turno.nombre_turno
                 FROM produccion
                 JOIN turno ON produccion.id_turno = turno.id_turno
@@ -48,7 +48,7 @@ class Dashboard {
     }
 
 
-    public function totalesMapeados(string $dia): array
+    public function TotalesMapeados(string $dia): array
     {
         $mapa = [
             'Pan' => 0,
@@ -56,7 +56,7 @@ class Dashboard {
             'Torta' => 0
         ];
 
-        foreach ($this->totalesPorDia($dia) as $fila) {
+        foreach ($this->TotalesPorDia($dia) as $fila) {
             $mapa[$fila['tipo']] = (int)$fila['total'];
         }
 

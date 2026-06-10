@@ -2,14 +2,15 @@
 
 require_once __DIR__ . '/../core/Database.php';
 
-class Empleados{
+class Empleado {
     private PDO $db;
 
     public function __construct() {
         $this->db = Database::getConnection();
     }
 
-    public function listar_empleados(): array {
+    // Listar todos los empleados
+    public function ListarEmpleados(): array {
 
         $sql = "
             SELECT
@@ -20,6 +21,7 @@ class Empleados{
                 direccion,
                 telefono
             FROM empleado
+            ORDER BY id_empleado DESC
         ";
 
         $stmt = $this->db->prepare($sql);
@@ -28,27 +30,8 @@ class Empleados{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function empleado_produccion(): array {
-
-        $sql = "
-            SELECT
-                e.id_empleado,
-                e.nombres,
-                e.apellidos,
-                COUNT(p.id_produccion) AS total_produccion
-            FROM empleado e
-            LEFT JOIN usuario u ON e.id_empleado = u.id_empleado
-            LEFT JOIN produccion p ON u.id_usuario = p.id_usuario
-            GROUP BY e.id_empleado
-        ";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function buscar_empleado(int $id_empleado): array|false {
+    // Obtener un empleado por ID
+    public function ObtenerPorId(int $id_empleado): array|false {
 
         $sql = "
             SELECT
@@ -68,23 +51,105 @@ class Empleados{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function agregar_empleado(array $datos): bool {
+    // Agregar empleado
+    public function Insertar(
+        string $nombres,
+        string $apellidos,
+        string $fecha_nacimiento,
+        string $direccion,
+        string $telefono
+    ): bool {
 
         $sql = "
-            INSERT INTO empleado (nombres, apellidos, fecha_nacimiento, direccion, telefono)
+            INSERT INTO empleado
+            (
+                nombres,
+                apellidos,
+                fecha_nacimiento,
+                direccion,
+                telefono
+            )
             VALUES (?, ?, ?, ?, ?)
         ";
 
         $stmt = $this->db->prepare($sql);
+
         return $stmt->execute([
-            $datos['nombres'],
-            $datos['apellidos'],
-            $datos['fecha_nacimiento'],
-            $datos['direccion'],
-            $datos['telefono']
+            $nombres,
+            $apellidos,
+            $fecha_nacimiento,
+            $direccion,
+            $telefono
         ]);
     }
 
-    
+    // Actualizar empleado
+    public function Actualizar(
+        int $id_empleado,
+        string $nombres,
+        string $apellidos,
+        string $fecha_nacimiento,
+        string $direccion,
+        string $telefono
+    ): bool {
 
+        $sql = "
+            UPDATE empleado
+            SET nombres = ?,
+                apellidos = ?,
+                fecha_nacimiento = ?,
+                direccion = ?,
+                telefono = ?
+            WHERE id_empleado = ?
+        ";
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute([
+            $nombres,
+            $apellidos,
+            $fecha_nacimiento,
+            $direccion,
+            $telefono,
+            $id_empleado
+        ]);
+    }
+
+    // Eliminar empleado
+    public function Eliminar(int $id_empleado): bool {
+
+        $sql = "
+            DELETE FROM empleado
+            WHERE id_empleado = ?
+        ";
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute([$id_empleado]);
+    }
+
+    // Ver producciones realizadas por cada empleado
+    public function EmpleadoProduccion(): array {
+
+        $sql = "
+            SELECT
+                e.id_empleado,
+                e.nombres,
+                e.apellidos,
+                COUNT(p.id_produccion) AS total_produccion
+            FROM empleado e
+            LEFT JOIN produccion p
+                ON e.id_empleado = p.id_empleado
+            GROUP BY
+                e.id_empleado,
+                e.nombres,
+                e.apellidos
+            ORDER BY total_produccion DESC
+        ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
