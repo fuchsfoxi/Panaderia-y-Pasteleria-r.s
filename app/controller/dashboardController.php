@@ -1,15 +1,17 @@
 <?php
 
-require_once __DIR__ . '/../core/controller.php';
+require_once __DIR__ . '/../core/Controller.php';
 require_once __DIR__ . '/../models/Dashboard.php';
 
 class DashboardController extends Controller {
 
-    public function datos(): void
-    {
+    public function datos(): void {
+
         if (!isset($_SESSION['usuario'])) {
             http_response_code(401);
-            echo json_encode(['error' => 'No autorizado']);
+            echo json_encode([
+                'error' => 'No autorizado'
+            ]);
             exit();
         }
 
@@ -18,21 +20,21 @@ class DashboardController extends Controller {
         $modelo = new Dashboard();
 
         echo json_encode([
-            'hoy' => $modelo->totalesMapeados('today'),
-            'ayer' => $modelo->totalesMapeados('yesterday'),
-            'ultimo_turno' => $modelo->ultimoTurno(),
+            'hoy' => $modelo->TotalesMapeados(),
+            'ayer' => $modelo->TotalesMapeados(),
+            'ultimo_turno' => $modelo->UltimoTurno()
         ]);
 
         exit();
     }
 
-    public function index(): void
-{
-    if (!isset($_SESSION['usuario'])) {
-        header('Location: ' . BASE_URL . '/login');
-        exit;
-    }
+    public function index(): void {
 
-    $this->view('dashboard/index');
-}
+        if (!isset($_SESSION['usuario'])) {
+            header('Location: ' . BASE_URL . '/login');
+            exit();
+        }
+
+        $this->view('dashboard/index');
+    }
 }

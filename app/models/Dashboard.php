@@ -72,4 +72,6 @@ class Dashboard {
 
         return $mapa;
     }
+
+    
 }

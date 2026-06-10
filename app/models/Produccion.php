@@ -96,4 +96,36 @@ class Produccion {
 
             return (int)$this->db->lastInsertId();
         }
+
+            public function ObtenerProduccionPorTipo(string $tipo): array {
+
+        $sql = "
+            SELECT
+                p.id_produccion,
+                p.fecha_produccion,
+                t.nombre_turno,
+                e.nombres,
+                e.apellidos,
+                pr.nombre_producto,
+                dp.cantidad
+            FROM produccion p
+            INNER JOIN turno t
+                ON p.id_turno = t.id_turno
+            INNER JOIN empleado e
+                ON p.id_empleado = e.id_empleado
+            INNER JOIN detalle_produccion dp
+                ON p.id_produccion = dp.id_produccion
+            INNER JOIN producto pr
+                ON dp.id_producto = pr.id_producto
+            WHERE pr.tipo = ?
+            ORDER BY p.id_produccion DESC
+        ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$tipo]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+        
 }

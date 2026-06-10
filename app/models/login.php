@@ -2,35 +2,38 @@
 
 require_once __DIR__ . '/../core/Database.php';
 
-Class Login{
+class Login {
 
     private PDO $db;
 
-    public function __construct(){
-
+    public function __construct() {
         $this->db = Database::getConnection();
     }
-    
 
-    public function Login(string $nombreUsuario, string $clave):array|false{
+    public function login(
+        string $nombreUsuario,
+        string $clave
+    ): array|false {
 
-        $sql = "SELECT * FROM usuario WHERE nombre_usuario = ?";
-
+        $sql = "
+            SELECT *
+            FROM usuario
+            WHERE nombre_usuario = ?
+              AND estado = 1
+        ";
 
         $stmt = $this->db->prepare($sql);
-
-
         $stmt->execute([$nombreUsuario]);
 
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $usuario = $stmt->fetch();
-
- 
-        if($usuario && $clave === $usuario['clave']){ 
+        if (
+            $usuario &&
+            password_verify($clave, $usuario['clave'])
+        ) {
             return $usuario;
         }
 
-        
         return false;
     }
 }

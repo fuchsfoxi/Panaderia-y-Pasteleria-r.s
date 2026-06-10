@@ -22,9 +22,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('Pan'),
-            'turnos'    => (new Turno())->obtenerTurnos(),
-            'panes'     => $modelo->obtenerProduccion('Pan'),
+            'productos' => new Producto()->obtenerProductosPorTipo('PAN'),
+            'turnos'    => new Turno()->obtenerTurnos(),
+            'panes'     => $modelo->obtenerProduccion(),
         ];
         $this->view('stock/stock_panes', $datos);
     }
@@ -36,9 +36,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('Bocadito'),
-            'turnos'    => (new Turno())->obtenerTurnos(),
-            'bocaditos' => $modelo->obtenerProduccion('Bocadito'),
+            'productos' => new Producto()->obtenerProductosPorTipo('BOCADITO'),
+            'turnos'    => new Turno()->obtenerTurnos(),
+            'bocaditos' => $modelo->obtenerProduccion(),
         ];
         $this->view('stock/stock_bocaditos', $datos);
     }
@@ -50,9 +50,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('Torta'),
-            'turnos'    => (new Turno())->obtenerTurnos(),
-            'tortas'    => $modelo->obtenerProduccion('Torta'),
+            'productos' => new Producto()->obtenerProductosPorTipo('Torta'),
+            'turnos'    => new Turno()->obtenerTurnos(),
+            'tortas'    => $modelo->obtenerProduccion(),
         ];
         $this->view('stock/stock_tortas', $datos);
     }
