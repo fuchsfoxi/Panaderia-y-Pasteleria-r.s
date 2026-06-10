@@ -69,4 +69,20 @@ class Stock {
 
         return $stmt->execute([$id]);
     }
+
+    public function ObtenerPorNombreProducto(string $nombre_producto): array {
+        $sql = "SELECT
+                    s.id_stock,
+                    p.nombre_producto,
+                    s.cantidad_actual
+                FROM stock s
+                JOIN producto p ON s.id_producto = p.id_producto
+                WHERE p.nombre_producto LIKE ?
+                ORDER BY s.id_stock DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(["%$nombre_producto%"]);
+
+        return $stmt->fetchAll();
+    }
 }
