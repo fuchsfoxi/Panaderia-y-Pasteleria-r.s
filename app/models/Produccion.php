@@ -77,4 +77,23 @@ class Produccion {
 
         return $stmt->execute([$id]);
     }
+
+            public function ObtenerPorId(int $id_produccion): array|false {
+
+            $sql = "
+                SELECT *
+                FROM produccion
+                WHERE id_produccion = ?
+            ";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([$id_produccion]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function ObtenerUltimoId(): int {
+
+            return (int)$this->db->lastInsertId();
+        }
 }
