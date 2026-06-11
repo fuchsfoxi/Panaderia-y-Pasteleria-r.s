@@ -8,7 +8,7 @@ class Producto {
         $this->db = Database::getConnection();
     }
 
-    public function obtenerProductos(): array {
+    public function ObtenerProductos(): array {
         $sql = "SELECT 
                     p.id_producto,
                     p.nombre_prod,
@@ -21,7 +21,7 @@ class Producto {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerProductosPorTipo(string $tipo): array {
+    public function ObtenerProductosPorTipo(string $tipo): array {
         $sql = "SELECT 
                     p.id_producto,
                     p.nombre_prod,
@@ -36,7 +36,7 @@ class Producto {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insertar(string $nombre, int $id_tipo): bool {
+    public function Insertar(string $nombre, int $id_tipo): bool {
         $sql = "INSERT INTO producto (nombre_prod, id_tipo) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([$nombre, $id_tipo]);
