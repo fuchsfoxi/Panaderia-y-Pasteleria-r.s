@@ -10,19 +10,19 @@ class Login {
         $this->db = Database::getConnection();
     }
 
-    public function login(string $nombreUsuario, string $clave): array|false {
+        public function login(string $nombreUsuario, string $clave): array|false {
 
-        $sql = "SELECT * FROM usuario WHERE nombre_usuario = ?";
+            $sql = "SELECT * FROM usuario WHERE nombre_usuario = ?";
 
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$nombreUsuario]);
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([$nombreUsuario]);
 
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($usuario && password_verify($clave, $usuario['clave'])) {
-            return $usuario;
+            if ($usuario && $clave === $usuario['clave']) {
+                return $usuario;
+            }
+
+            return false;
         }
-
-        return false;
-    }
 }
