@@ -1,15 +1,14 @@
 ## sistema de produccion diaria 
-sistema web para el control de salida de producto para falicitar el amacenamiento del control diaria.
+sistema web para el control de salida de producto para falicitar el amacenamiento del control diaria. desarrollado como proyecto final de proyecto programado con php usando la estructura MVC  
 
 ## descripcion de proyecto 
 Nombre: Panaderia  y Pasteleria Renzo
 Grio: venta de panificaciones, bocaditos, tortas y en una cafeteria <br>
 Tamaño: Pequeña empresa, operacion individual <br>
 
-Contexto: Actualmente la empresa registra su producción de manera manual en hojas de papel. En estos registros se anota la cantidad de panes producidos en cada turno y cuándo se terminan. 
-
+Contexto: Actualmente la empresa registra su producción de manera manual en hojas de papel. En estos registros se anota la cantidad de panes producidos en cada turno y cuándo se terminan. La producción de pan se registra por latas, donde una lata puede contener varios panes del mismo tipo, pero cada pan pertenece únicamente a una lata. 
 La panadería produce diferentes tipos de pan, como Ciabatti, carioco, francés y coliza, por lo que la información de producción puede volverse difícil de organizar cuando se registra manualmente. 
-Además, la empresa también produce tortas y bocaditos, los cuales se registran de forma similar pero en hojas de papel separadas. Estos productos también se clasifican por tipos, aunque su producción se realiza en un solo turno.  <br>
+Además, la empresa también produce tortas y bocaditos, los cuales se registran de forma similar, pero en hojas de papel separadas. Estos productos también se clasifican por tipos, aunque su producción se realiza en un solo turno.  <br>
 
 Justificacin: se nesecita un sistema para gestonar los datos del sotck del dia y turno 
 
@@ -60,7 +59,7 @@ SOLUCIOÓN:  La solución que se planteo es hacer un sistema que permita gestion
 1. USABILIDAD
    1. La interfaz del sistema debe ser sencilla e intuitiva para  los trabajadores
    2. El sistema debe mostrar la información de forma clara y organizada
-   3. El 	sistema debe mostrar mensajes claros cuando se guarde la informacion
+   3. El 	sistema debe mostrar mensajes claros cuando
  4. RENDIMIENTO
     1. El sistema debe registrar la producción en menos de 3 segundos
     2. El sistema debe permitir consultar la producción rápidamente
@@ -78,77 +77,82 @@ SOLUCIOÓN:  La solución que se planteo es hacer un sistema que permita gestion
 ## BASE DE DATOS
 ```sql
 create database panaderia_rs;
-use panaderia_rs;
+use  panaderia_rs;
 
-CREATE TABLE rol(
-    id_rol INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_rol VARCHAR(50) NOT NULL UNIQUE,
-    descripcion VARCHAR(255),
-    estado BOOLEAN DEFAULT TRUE
-);
+create table usuario(
+id_usuario int auto_increment primary key,
+roles enum('admin', 'superadmin') default 'admin',
+nombre_usuario varchar (150) not null,
+clave varchar(250) not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE empleado(
-    id_empleado INT AUTO_INCREMENT PRIMARY KEY,
-    nombres VARCHAR(100) NOT NULL,
-    apellidos VARCHAR(100) NOT NULL,
-    dni CHAR(8) UNIQUE NOT NULL,
-    telefono VARCHAR(15),
-    estado BOOLEAN DEFAULT TRUE
-);
+create table tipo(
+id_tipo int auto_increment primary key,
+tipo varchar(100)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE usuario(
-    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_usuario VARCHAR(100) NOT NULL UNIQUE,
-    clave VARCHAR(255) NOT NULL,
-    id_rol INT NOT NULL,
-    id_empleado INT,
-    estado BOOLEAN DEFAULT TRUE,
+create table producto(
+id_producto int auto_increment primary key,
+nombre_prod varchar(150),
+ id_tipo int not null,
+ foreign key(id_tipo) references tipo(id_tipo)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-    FOREIGN KEY(id_rol) REFERENCES rol(id_rol),
-    FOREIGN KEY(id_empleado) REFERENCES empleado(id_empleado)
-);
+create table turno(
+id_turno int auto_increment primary key,
+nombre_turno enum('Mañana', 'Noche')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE turno(
-    id_turno INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_turno VARCHAR(50) NOT NULL UNIQUE,
-    hora_inicio TIME NOT NULL,
-    hora_fin TIME NOT NULL
-);
+create table produccion(
+id_produccion int auto_increment primary key,
+cantidad_prod int,
+hora_agotada DATETIME NULL DEFAULT NULL,
+id_producto int not null,
+id_turno int not null,
+foreign key(id_producto) references producto(id_producto),
+foreign key(id_turno) references turno(id_turno)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE produccion(
-    id_produccion INT AUTO_INCREMENT PRIMARY KEY,
-    fecha_produccion DATE NOT NULL,
-    id_turno INT NOT NULL,
-    id_empleado INT NOT NULL,
 
-    FOREIGN KEY(id_turno) REFERENCES turno(id_turno),
-    FOREIGN KEY(id_empleado) REFERENCES empleado(id_empleado)
-);
 
-CREATE TABLE producto(
-    id_producto INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_producto VARCHAR(150) NOT NULL,
-    tipo ENUM('PAN','TORTA','BOCADITO') NOT NULL
-);
+-- Usuarios
+INSERT INTO usuario (roles, nombre_usuario, clave) VALUES
+('admin', 'gerente', '1234'),
+('superadmin', 'dueña', '1234');
 
-CREATE TABLE stock(
-    id_stock INT AUTO_INCREMENT PRIMARY KEY,
-    id_producto INT NOT NULL,
-    cantidad_actual DECIMAL(10,2) DEFAULT 0,
+-- Tipo
+INSERT INTO tipo (tipo) VALUES
+('Pan'),
+('Torta'),
+('Bocadito'),
 
-    FOREIGN KEY(id_producto) REFERENCES producto(id_producto)
-);
 
-CREATE TABLE detalle_produccion(
-    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
-    id_produccion INT NOT NULL,
-    id_producto INT NOT NULL,
-    cantidad INT NOT NULL,
+-- Producto
+INSERT INTO producto (nombre_prod, id_tipo) VALUES
+('Pan de molde', 1),
+('Torta de chocolate', 2),
+('Bocadito de queso', 3),
+('Pastel de manzana', 4),
+('Galleta de avena', 5),
+('Empanada de pollo', 6),
+('Croissant de mantequilla', 7),
+('Queque de vainilla', 8);
 
-    FOREIGN KEY(id_produccion) REFERENCES produccion(id_produccion),
-    FOREIGN KEY(id_producto) REFERENCES producto(id_producto)
-);
+-- Turno
+INSERT INTO turno (nombre_turno) VALUES
+('Mañana'),
+('Noche');
 
+-- Produccion
+INSERT INTO produccion (cantidad_prod, hora_agotada, id_producto, id_turno) VALUES
+(100, NULL, 1, 1),
+(50, '2026-05-11 10:30:00', 2, 1),
+(80, NULL, 3, 2),
+(60, '2026-05-11 21:00:00', 4, 2),
+(120, NULL, 5, 1),
+(45, '2026-05-11 09:15:00', 6, 1),
+(90, NULL, 7, 2),
+(30, '2026-05-11 22:45:00', 8, 2);
 
 ```
 ### Diagrama Entidad-Relacion (DER)
