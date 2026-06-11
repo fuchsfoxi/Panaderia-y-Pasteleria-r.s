@@ -10,17 +10,15 @@ class Historial {
     }
 
     public function obtenerTodo(?string $tipo = null, ?string $fecha = null): array {
+
         $sql = "SELECT 
                     produccion.id_produccion,
-                    produccion.id_producto,
-                    produccion.id_turno,
-                    producto.nombre_prod,
-                    tipo.tipo,
                     produccion.cantidad_prod,
                     produccion.hora_agotada,
-                    turno.nombre_turno,
-                    DATE_FORMAT(produccion.hora_agotada, '%d/%m/%Y') as fecha,
-                    DATE_FORMAT(produccion.hora_agotada, '%Y-%m-%d') as fecha_raw
+                    producto.id_producto,
+                    producto.nombre_prod,
+                    tipo.tipo,
+                    turno.nombre_turno
                 FROM produccion
                 JOIN producto ON produccion.id_producto = producto.id_producto
                 JOIN tipo ON producto.id_tipo = tipo.id_tipo
@@ -29,18 +27,23 @@ class Historial {
 
         $params = [];
 
+        // FILTRO POR TIPO (AHORA ES tabla tipo)
         if ($tipo !== null && $tipo !== 'todos') {
             $sql .= " AND tipo.tipo = ?";
             $params[] = $tipo;
         }
 
+        // FILTRO POR FECHA (si hora_agotada es DATETIME)
         if ($fecha !== null && $fecha !== '') {
             $sql .= " AND DATE(produccion.hora_agotada) = ?";
             $params[] = $fecha;
         }
 
+        $sql .= " ORDER BY produccion.id_produccion DESC";
+
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
-        return $stmt->fetchAll();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

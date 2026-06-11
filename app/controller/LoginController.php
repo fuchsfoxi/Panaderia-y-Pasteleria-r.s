@@ -33,6 +33,4 @@ public function index():void {
     }
     $this->view('auth/login', ['error' => $error]);
 }
-
-
 }

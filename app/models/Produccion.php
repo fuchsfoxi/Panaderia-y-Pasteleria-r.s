@@ -9,49 +9,97 @@ class Produccion {
         $this->db = Database::getConnection();
     }
 
-public function obtenerProduccion(?string $tipo = null): array {
-    $sql = "SELECT 
-                produccion.id_produccion,
-                producto.nombre_prod,
-                tipo.tipo,
-                produccion.cantidad_prod,
-                produccion.hora_agotada,
-                turno.nombre_turno
-            FROM produccion
-            JOIN producto ON produccion.id_producto = producto.id_producto
-            JOIN tipo ON producto.id_tipo = tipo.id_tipo
-            JOIN turno ON produccion.id_turno = turno.id_turno";
-    if ($tipo !== null) {
-        $sql .= " WHERE tipo.tipo = ? ORDER BY produccion.id_produccion DESC";
+    public function obtenerProduccion(?string $tipo = null): array {
+
+        $sql = "SELECT 
+                    p.id_produccion,
+                    p.fecha_produccion,
+                    pr.id_producto,
+                    pr.nombre_prod,
+                    t.tipo,
+                    p.cantidad_prod,
+                    tu.nombre_turno
+                FROM produccion p
+                JOIN producto pr ON p.id_producto = pr.id_producto
+                JOIN tipo t ON pr.id_tipo = t.id_tipo
+                JOIN turno tu ON p.id_turno = tu.id_turno
+                WHERE 1=1";
+
+        $params = [];
+
+        if ($tipo !== null) {
+            $sql .= " AND t.tipo = ?";
+            $params[] = $tipo;
+        }
+
+        $sql .= " ORDER BY p.id_produccion DESC";
+
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$tipo]);
-    } else {
-        $sql .= " ORDER BY produccion.id_produccion DESC";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($params);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    return $stmt->fetchAll();
-}
 
+    public function eliminar(int $id): bool {
 
-public function eliminar(int $id): bool {
-    $sql = "DELETE FROM produccion WHERE id_produccion = ?";
-    $stmt = $this->db->prepare($sql);
-    return $stmt->execute([$id]);
-}
+        // YA NO EXISTE detalle_produccion en tu BD
+        $sql = "DELETE FROM produccion WHERE id_produccion = ?";
+        $stmt = $this->db->prepare($sql);
 
-        public function insertar(int $cantidad, int $id_producto, int $id_turno): bool {
-    $sql = "INSERT INTO produccion (cantidad_prod, id_producto, id_turno) 
-            VALUES (?, ?, ?)";
-    $stmt = $this->db->prepare($sql);
-    return $stmt->execute([$cantidad, $id_producto, $id_turno]);
-}
+        return $stmt->execute([$id]);
+    }
 
-public function actualizar(int $id, int $cantidad, int $id_producto, int $id_turno): bool {
-    $sql = "UPDATE produccion 
-            SET cantidad_prod = ?, id_producto = ?, id_turno = ?
-            WHERE id_produccion = ?";
-    $stmt = $this->db->prepare($sql);
-    return $stmt->execute([$cantidad, $id_producto, $id_turno, $id]);
-}
+    public function insertar(int $id_turno, array $productos): bool {
+
+        $sql = "INSERT INTO produccion (fecha_produccion, id_turno, id_producto, cantidad_prod) 
+                VALUES (CURDATE(), ?, ?, ?)";
+
+        $stmt = $this->db->prepare($sql);
+
+        foreach ($productos as $producto) {
+            $ok = $stmt->execute([
+                $id_turno,
+                $producto['id_producto'],
+                $producto['cantidad']
+            ]);
+
+            if (!$ok) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function actualizar(int $id, int $id_turno, array $productos): bool {
+
+        $sql = "UPDATE produccion 
+                SET id_turno = ?
+                WHERE id_produccion = ?";
+
+        $stmt = $this->db->prepare($sql);
+
+        if (!$stmt->execute([$id_turno, $id])) {
+            return false;
+        }
+
+        // como ya no existe detalle_produccion, solo reinsertamos registros
+        foreach ($productos as $producto) {
+
+            $sqlInsert = "INSERT INTO produccion (fecha_produccion, id_turno, id_producto, cantidad_prod)
+                          VALUES (CURDATE(), ?, ?, ?)";
+
+            $stmtInsert = $this->db->prepare($sqlInsert);
+
+            if (!$stmtInsert->execute([
+                $id_turno,
+                $producto['id_producto'],
+                $producto['cantidad']
+            ])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

@@ -9,57 +9,38 @@ class Dashboard {
         $this->db = Database::getConnection();
     }
 
-    /**
-     * Devuelve los totales de producción agrupados por tipo para un día.
-     * $dia acepta 'today' o 'yesterday'.
-     *
-     * Resultado ejemplo:
-     * [ ['tipo' => 'Pan', 'total' => 320], ['tipo' => 'Torta', 'total' => 5], ... ]
-     */
-        public function totalesPorDia(string $dia): array {
-            $sql = "SELECT 
-                        tipo.tipo,
-                        SUM(produccion.cantidad_prod) AS total
-                    FROM produccion
-                    JOIN producto ON produccion.id_producto = producto.id_producto
-                    JOIN tipo ON producto.id_tipo = tipo.id_tipo
-                    WHERE DATE(produccion.hora_agotada) = CURDATE()
-                    GROUP BY tipo.tipo";
 
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+    public function totalesPorDia(string $dia): array {
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-        /**
-     * Devuelve el nombre del último turno registrado en produccion.
-     */
+        $sql = "SELECT 
+                    t.tipo,
+                    SUM(p.cantidad_prod) AS total
+                FROM produccion p
+                JOIN producto pr ON p.id_producto = pr.id_producto
+                JOIN tipo t ON pr.id_tipo = t.id_tipo
+                WHERE DATE(p.fecha_produccion) = CURDATE()
+                GROUP BY t.tipo";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function ultimoTurno(): string {
-        $sql = "SELECT turno.nombre_turno
-                FROM produccion
-                JOIN turno ON produccion.id_turno = turno.id_turno
-                ORDER BY produccion.hora_agotada DESC
+
+        $sql = "SELECT tu.nombre_turno
+                FROM produccion p
+                JOIN turno tu ON p.id_turno = tu.id_turno
+                ORDER BY p.fecha_produccion DESC, p.id_produccion DESC
                 LIMIT 1";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
+
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
         return $fila['nombre_turno'] ?? 'Sin registros';
-    }
-
-
-    public function totalesMapeados(string $dia): array
-    {
-        $mapa = [
-            'Pan' => 0,
-            'Bocadito' => 0,
-            'Torta' => 0
-        ];
-
-        foreach ($this->totalesPorDia($dia) as $fila) {
-            $mapa[$fila['tipo']] = (int)$fila['total'];
-        }
-
-        return $mapa;
     }
 }

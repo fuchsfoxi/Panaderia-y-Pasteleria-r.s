@@ -22,9 +22,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('Pan'),
+            'productos' => (new Producto())->obtenerProductosPorTipo('PAN'),
             'turnos'    => (new Turno())->obtenerTurnos(),
-            'panes'     => $modelo->obtenerProduccion('Pan'),
+            'panes'     => $modelo->obtenerProduccion('PAN'),
         ];
         $this->view('stock/stock_panes', $datos);
     }
@@ -36,9 +36,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('Bocadito'),
+            'productos' => (new Producto())->obtenerProductosPorTipo('BOCADITO'),
             'turnos'    => (new Turno())->obtenerTurnos(),
-            'bocaditos' => $modelo->obtenerProduccion('Bocadito'),
+            'bocaditos' => $modelo->obtenerProduccion('BOCADITO'),
         ];
         $this->view('stock/stock_bocaditos', $datos);
     }
@@ -50,9 +50,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('Torta'),
+            'productos' => (new Producto())->obtenerProductosPorTipo('TORTA'),
             'turnos'    => (new Turno())->obtenerTurnos(),
-            'tortas'    => $modelo->obtenerProduccion('Torta'),
+            'tortas'    => $modelo->obtenerProduccion('TORTA'),
         ];
         $this->view('stock/stock_tortas', $datos);
     }
@@ -63,28 +63,29 @@ public function guardar(): void {
         exit();
     }
 
-    $cantidad = (int)($_POST['cantidad'] ?? 0);
-    $tipo     = $_POST['tipo'] ?? 'Pan';
+    $id_turno     = (int)($_POST['id_turno'] ?? 0);
+    $id_empleado  = (int)($_POST['id_empleado'] ?? 0);
+    $id_producto  = (int)($_POST['id_producto'] ?? 0);
+    $cantidad     = (int)($_POST['cantidad'] ?? 0);
+    $tipo         = $_POST['tipo'] ?? 'PAN';
 
     $rutas = [
-        'Pan'      => 'panes',
-        'Bocadito' => 'bocaditos',
-        'Torta'    => 'tortas',
+        'PAN'      => 'panes',
+        'BOCADITO' => 'bocaditos',
+        'TORTA'    => 'tortas',
     ];
 
     $ruta = $rutas[$tipo] ?? 'panes';
 
-    if ($cantidad === 0) {
+    if ($cantidad === 0 || $id_turno === 0 || $id_empleado === 0 || $id_producto === 0) {
         header("Location: " . BASE_URL . "/stock/" . $ruta . "?error=1");
         exit();
     }
 
     $modelo = new Produccion();
-    $modelo->insertar(
-        $cantidad,
-        (int)$_POST['id_producto'],
-        (int)$_POST['id_turno']
-    );
+    $modelo->insertar($id_turno, $id_empleado, [
+        ['id_producto' => $id_producto, 'cantidad' => $cantidad]
+    ]);
 
     header("Location: " . BASE_URL . "/stock/" . $ruta);
     exit();

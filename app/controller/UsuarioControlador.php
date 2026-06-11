@@ -22,10 +22,12 @@ class UsuarioControlador extends Controller {
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $modelo = new Usuario();
-            $modelo->insertar(trim($_POST['nombre']), trim($_POST['email']), trim($_POST['password']));
+            $id_rol = (int)($_POST['id_rol'] ?? 1);
+            $id_empleado = !empty($_POST['id_empleado']) ? (int)$_POST['id_empleado'] : null;
+            $modelo->insertar($id_rol, trim($_POST['nombre_usuario']), trim($_POST['clave']), $id_empleado);
             header("Location: " . BASE_URL . "/usuario");
             exit();
         }
         $this->view('usuario/crear');
-    } // ← cierra crear
+    }// ← cierra crear
 }
