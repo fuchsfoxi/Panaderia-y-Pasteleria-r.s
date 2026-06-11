@@ -50,14 +50,14 @@
                         </div>
                         <span class="carta_historial_info"><?= htmlspecialchars($item['nombre_turno']) ?></span>
                         <div class="carta_historial_acciones">
-                            <button class="btn-editar btn-editar-modal"
-                                data-id="<?= $item['id_produccion'] ?>"
-                                data-cantidad="<?= $item['cantidad_prod'] ?>"
-                                data-turno="<?= $item['id_turno'] ?>"
-                                data-producto="<?= $item['id_producto'] ?>"
-                                data-fecha="<?= $item['fecha_raw'] ?? '' ?>">
-                                <i class="fa-solid fa-pen"></i> Editar
-                            </button>
+                                <button class="btn-editar btn-editar-modal"
+                                    data-id="<?= $item['id_produccion'] ?>"
+                                    data-cantidad="<?= $item['cantidad_prod'] ?>"
+                                    data-turno="<?= $item['id_turno'] ?>"
+                                    data-producto="<?= $item['id_producto'] ?>"
+                                    data-fecha="<?= $item['fecha_raw'] ?? '' ?>">
+                                    <i class="fa-solid fa-pen"></i> Editar
+                                </button>
                             <a href="<?= BASE_URL ?>/produccion/eliminar/<?= $item['id_produccion'] ?>" class="btn-eliminar">
                                 <i class="fa-solid fa-trash"></i> Eliminar
                             </a>

@@ -28,42 +28,59 @@
             <button class="btn-filtro" data-tipo="torta">Torta</button>
         </div>
 
-        <!-- LISTA DE PRODUCTOS -->
+                <!-- LISTA DE PRODUCTOS -->
         <div class="lista-productos" id="lista">
+
             <?php foreach ($productos as $p): ?>
-            <div class="card-producto" data-tipo="<?= strtolower($p['tipo']) ?>">
 
-                <div class="card-icono">
-                    <?php if ($p['tipo'] === 'Pan'): ?>
-                        <img src="<?= BASE_URL ?>/public/img/icon_pan.svg" alt="Icono de pan" class="icono-tipo">
-                    <?php elseif ($p['tipo'] === 'Bocadito'): ?>
-                        <img src="<?= BASE_URL ?>/public/img/icon_bocaditos.svg" alt="Icono de bocadito" class="icono-tipo">
-                    <?php elseif ($p['tipo'] === 'Torta'): ?>
-                        <img src="<?= BASE_URL ?>/public/img/icon_torta.svg" alt="Icono de torta" class="icono-tipo">
-                    <?php endif; ?>
+                <?php 
+                    // NORMALIZAMOS EL TIPO
+                    $tipo = strtolower($p['tipo']); 
+                ?>
+
+                <div class="card-producto" data-tipo="<?= $tipo ?>">
+
+                    <div class="card-icono">
+                        <?php if ($tipo === 'pan'): ?>
+                            <img src="<?= BASE_URL ?>/public/img/icon_pan.svg" class="icono-tipo">
+
+                        <?php elseif ($tipo === 'bocadito'): ?>
+                            <img src="<?= BASE_URL ?>/public/img/icon_bocaditos.svg" class="icono-tipo">
+
+                        <?php elseif ($tipo === 'torta'): ?>
+                            <img src="<?= BASE_URL ?>/public/img/icon_torta.svg" class="icono-tipo">
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="card-info">
+                        <h3 class="card-nombre">
+                            <?= htmlspecialchars($p['nombre_prod']) ?>
+                        </h3>
+
+                        <p class="card-tipo">
+                            <?= ucfirst($tipo) ?>
+                        </p>
+                    </div>
+
+                    <div class="card-acciones">
+                        <a href="<?= BASE_URL ?>/producto/editar/<?= $p['id_producto'] ?>"
+                        class="btn-editar-card"
+                        data-id="<?= $p['id_producto'] ?>"
+                        data-nombre="<?= htmlspecialchars($p['nombre_prod']) ?>"
+                        data-tipo="<?= htmlspecialchars($p['tipo']) ?>">
+                            <i class="fa-solid fa-pen"></i> Editar
+                        </a>
+
+                        <a href="<?= BASE_URL ?>/producto/eliminar/<?= $p['id_producto'] ?>"
+                        class="btn-eliminar-card">
+                            <i class="fa-solid fa-trash"></i> Eliminar
+                        </a>
+                    </div>
+
                 </div>
 
-                <div class="card-info">
-                    <h3 class="card-nombre"><?= htmlspecialchars($p['nombre_prod']) ?></h3>
-                    <p class="card-tipo"><?= htmlspecialchars($p['tipo']) ?></p>
-                </div>
-
-                <div class="card-acciones">
-                    <a href="<?= BASE_URL ?>/producto/editar/<?= $p['id_producto'] ?>"
-                       class="btn-editar-card"
-                       data-id="<?= $p['id_producto'] ?>"
-                       data-nombre="<?= htmlspecialchars($p['nombre_prod']) ?>"
-                       data-tipo="<?= $p['id_tipo'] ?>">
-                        <i class="fa-solid fa-pen"></i> Editar
-                    </a>
-                    <a href="<?= BASE_URL ?>/producto/eliminar/<?= $p['id_producto'] ?>"
-                       class="btn-eliminar-card">
-                        <i class="fa-solid fa-trash"></i> Eliminar
-                    </a>
-                </div>
-
-            </div>
             <?php endforeach; ?>
+
         </div>
 
         <!-- MODAL NUEVO PRODUCTO -->

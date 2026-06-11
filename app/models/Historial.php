@@ -12,34 +12,35 @@ class Historial {
     public function obtenerTodo(?string $tipo = null, ?string $fecha = null): array {
 
         $sql = "SELECT 
-                    produccion.id_produccion,
-                    produccion.cantidad_prod,
-                    produccion.hora_agotada,
-                    producto.id_producto,
-                    producto.nombre_prod,
-                    tipo.tipo,
-                    turno.nombre_turno
-                FROM produccion
-                JOIN producto ON produccion.id_producto = producto.id_producto
-                JOIN tipo ON producto.id_tipo = tipo.id_tipo
-                JOIN turno ON produccion.id_turno = turno.id_turno
+                    p.id_produccion,
+                    p.cantidad_prod,
+                    p.hora_agotada,
+                    p.id_turno,
+                    p.id_producto,
+                    t.nombre_turno,
+                    pr.nombre_prod,
+                    tp.tipo
+                FROM produccion p
+                JOIN producto pr ON p.id_producto = pr.id_producto
+                JOIN tipo tp ON pr.id_tipo = tp.id_tipo
+                JOIN turno t ON p.id_turno = t.id_turno
                 WHERE 1=1";
 
         $params = [];
 
-        // FILTRO POR TIPO (AHORA ES tabla tipo)
+        // FILTRO POR TIPO
         if ($tipo !== null && $tipo !== 'todos') {
-            $sql .= " AND tipo.tipo = ?";
+            $sql .= " AND tp.tipo = ?";
             $params[] = $tipo;
         }
 
-        // FILTRO POR FECHA (si hora_agotada es DATETIME)
+        // FILTRO POR FECHA (usar hora_agotada)
         if ($fecha !== null && $fecha !== '') {
-            $sql .= " AND DATE(produccion.hora_agotada) = ?";
+            $sql .= " AND DATE(p.hora_agotada) = ?";
             $params[] = $fecha;
         }
 
-        $sql .= " ORDER BY produccion.id_produccion DESC";
+        $sql .= " ORDER BY p.id_produccion DESC";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
