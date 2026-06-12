@@ -2,7 +2,11 @@
   <a href="https://www.figma.com/design/1QxlmVCE78YkhfKIla1wd1/Cambios-de-web-stock?node-id=126-2&t=gJVkOSGm86gt911B-1">
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma">
   </a>
-  &nbsp;&nbsp;&nbsp;
+  
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  
   <a href="https://trello.com/invite/b/6a13bb0d013dc2d27faa5f31/ATTIc1bdd8c0875fa677ac20a2acc6654c8f77BF3D59/trabajo-php">
     <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" alt="Trello">
   </a>
