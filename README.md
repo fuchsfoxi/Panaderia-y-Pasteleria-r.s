@@ -1,80 +1,118 @@
-## sistema de produccion diaria 
-sistema web para el control de salida de producto para falicitar el amacenamiento del control diaria. desarrollado como proyecto final de proyecto programado con php usando la estructura MVC  
+# Sistema de Producción Diaria
 
-## descripcion de proyecto 
-Nombre: Panaderia  y Pasteleria Renzo
-Grio: venta de panificaciones, bocaditos, tortas y en una cafeteria <br>
-Tamaño: Pequeña empresa, operacion individual <br>
+Sistema web para el control de salida de productos, desarrollado para facilitar el almacenamiento del registro diario de producción. Proyecto final programado en PHP con estructura MVC.
 
-Contexto: Actualmente la empresa registra su producción de manera manual en hojas de papel. En estos registros se anota la cantidad de panes producidos en cada turno y cuándo se terminan. La producción de pan se registra por latas, donde una lata puede contener varios panes del mismo tipo, pero cada pan pertenece únicamente a una lata. 
-La panadería produce diferentes tipos de pan, como Ciabatti, carioco, francés y coliza, por lo que la información de producción puede volverse difícil de organizar cuando se registra manualmente. 
-Además, la empresa también produce tortas y bocaditos, los cuales se registran de forma similar, pero en hojas de papel separadas. Estos productos también se clasifican por tipos, aunque su producción se realiza en un solo turno.  <br>
+---
 
-Justificacin: se nesecita un sistema para gestonar los datos del sotck del dia y turno 
+## Descripción del Proyecto
 
-## IMAGENES DE LA EMPRESA 
-![empresa_cerca](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/foto_empresa.jpeg)
-![empresa_lejos](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/foto_empresa_2.jpeg)
+| Campo | Detalle |
+|-------|---------|
+| **Nombre** | Panadería y Pastelería Renzo |
+| **Giro** | Venta de panificados, bocaditos, tortas y servicio de cafetería |
+| **Tamaño** | Pequeña empresa, operación individual |
 
-## IMAGENES DEL PROBLEMA 
-![bocadito_ontrol](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/bocaditos_control.jpeg)
-![pan_control](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/pan_control.jpeg)
-![torta_control](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/tortas_control.jpeg)
+### Contexto
 
-## TRELLO 
-![Trello](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/Trello_PHP.png)
- #### - POR INGRESAR -
+La empresa registra actualmente su producción de forma manual en hojas de papel. En estos registros se anota la cantidad de panes elaborados en cada turno y la hora en que se terminan. La producción de pan se controla por latas, donde cada lata contiene varios panes del mismo tipo, pero cada pan pertenece únicamente a una lata.
 
-## IDENTIFICAR EL PROBLEMA Y SOLUCION 
+La panadería elabora diferentes tipos de pan: ciabatta, carioca, francés y coliza. Esta variedad hace que la información de producción se vuelva difícil de organizar cuando se maneja en papel.
 
-PROBLEMATICA: Actualmente la empresa registra su producción de manera manual en hojas de papel. En estos registros se anota la cantidad de panes producidos en cada turno y cuándo se terminan. lo cual tiene el peligro de dañarse, perderse o tener algun daño al que no se puede anticipar.
+Además, la empresa produce tortas y bocaditos, los cuales se registran en hojas separadas. Estos productos también se clasifican por tipos, aunque su producción se realiza en un solo turno.
 
-SOLUCIOÓN:  La solución que se planteo es hacer un sistema que permita gestionar o registrar los datos diarios de dicha empresa dicho sistema almacenara información relevante de la fecha de la producción, hora permitiendo además realizar operaciones como editar, eliminar y agregar.  
+### Justificación
 
-## REQUERIMIENTOS MUNCIONALES
+Se necesita un sistema que permita gestionar los datos de stock del día y del turno correspondiente, eliminando el riesgo de pérdida o deterioro de la información registrada en papel.
 
-1. TIPO DE PRODUCTOS
-    1. El sistema debe de poder gestionar los tipos de productos
-    2. El sistema debe de poder editar los tipos de productos
-    3. El sistema debe poder eliminar el tipo de productos
-    4. El sistema debe de mostrar la lista de tipos de productos
-2. PRODUCTOS
-   1. El sistema debe permitir registrar nuevos productos
-   2. El sistema debe permitir editar la información de los productos
-   3. El sistema debe permitir eliminar productos
-   4. El sistema debe mostrar la lista de productos registrados
-3. PRODUCCION
-    1. El sistema debe registrar la  producción diaria
-    2. El sistema debe registrar la  cantidad producida
-    3. El sistema debe registrar la fecha de producción
-    4. El sistema debe registrar la fecha de producción
- 4. TURNOS 
-    1. El sistema debe registrar el turno de producción
-    2. El sistema debe permitir registrar turno mañana o  tarde
-    3. El sistema debe permitir consultar producción por  turno
-    4. El sistema debe mostrar los turnos registrados
-   
-## REQUERIMENTO NO FUNCIONALES 
+---
 
-1. USABILIDAD
-   1. La interfaz del sistema debe ser sencilla e intuitiva para  los trabajadores
-   2. El sistema debe mostrar la información de forma clara y organizada
-   3. El 	sistema debe mostrar mensajes claros cuando
- 4. RENDIMIENTO
-    1. El sistema debe registrar la producción en menos de 3 segundos
-    2. El sistema debe permitir consultar la producción rápidamente
-    3. El 	sistema debe 	permitir manejar  múltiples registros 	de producción
- 5. ALMACENAMIENTO
-     1. El sistema debe almacenar la información en una base de datos
-     2. El sistema debe guardar los registros de producción diaria
-     3. La base de datos debe mantener la información ordenad
- 
- 4. MANTENIBILIDAD
-     1. El sistema debe estar desarrollado de 	forma  estructurada
-     2. El sistema debe permitir realizar modificaciones sin 	afectar 	el sistema
-     3. El sistema debe permitir realizar modificaciones sin 	afectar 	el sistema 
+## Imágenes de la Empresa
 
-## BASE DE DATOS
+| Vista cercana | Vista panorámica |
+|:--:|:--:|
+| ![Foto cercana](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/foto_empresa.jpeg) | ![Foto panorámica](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/foto_empresa_2.jpeg) |
+
+---
+
+## Imágenes del Problema Actual
+
+| Control de bocaditos | Control de pan | Control de tortas |
+|:--:|:--:|:--:|
+| ![Bocaditos](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/bocaditos_control.jpeg) | ![Pan](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/pan_control.jpeg) | ![Tortas](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/tortas_control.jpeg) |
+
+---
+
+## Gestión del Proyecto
+
+![Tablero Trello](https://github.com/fuchsfoxi/Panaderia-y-Pasteleria-r.s/blob/main/img_empresa/Trello_PHP.png)
+
+---
+
+## Identificación del Problema y Propuesta de Solución
+
+### Problemática
+
+El registro manual en hojas de papel presenta riesgos de deterioro, pérdida o daños imprevistos. Además, dificulta la consulta histórica de la producción y puede generar errores al transcribir datos.
+
+### Solución
+
+Implementar un sistema web que permita registrar y gestionar los datos diarios de producción. El sistema almacenará información de la fecha, hora y turno de producción, permitiendo realizar operaciones de agregar, editar y eliminar registros.
+
+---
+
+## Requerimientos Funcionales
+
+### 1. Gestión de Tipos de Productos
+- [ ] Registrar nuevos tipos de productos
+- [ ] Editar información de tipos existentes
+- [ ] Eliminar tipos de productos
+- [ ] Mostrar listado de tipos registrados
+
+### 2. Gestión de Productos
+- [ ] Registrar nuevos productos
+- [ ] Editar información de productos
+- [ ] Eliminar productos
+- [ ] Mostrar listado de productos registrados
+
+### 3. Registro de Producción
+- [ ] Registrar la producción diaria
+- [ ] Registrar la cantidad producida
+- [ ] Registrar la fecha de producción
+- [ ] Registrar la hora de agotamiento del producto
+
+### 4. Gestión de Turnos
+- [ ] Registrar el turno de producción (mañana o noche)
+- [ ] Consultar producción por turno
+- [ ] Mostrar listado de turnos registrados
+
+---
+
+## Requerimientos No Funcionales
+
+### 1. Usabilidad
+- Interfaz sencilla e intuitiva para los trabajadores
+- Información mostrada de forma clara y organizada
+- Mensajes claros al realizar operaciones (éxito, error, confirmación)
+
+### 2. Rendimiento
+- Registro de producción en menos de 3 segundos
+- Consulta de producción de forma rápida
+- Capacidad para manejar múltiples registros simultáneos
+
+### 3. Almacenamiento
+- Información almacenada en base de datos
+- Registros de producción diaria guardados de forma persistente
+- Base de datos manteniendo la información ordenada y estructurada
+
+### 4. Mantenibilidad
+- Código desarrollado de forma estructurada
+- Facilidad para realizar modificaciones sin afectar el funcionamiento general
+- Documentación del código para futuras actualizaciones
+
+---
+
+## Base de Datos
+
 ```sql
 create database panaderia_rs;
 use  panaderia_rs;
@@ -113,8 +151,6 @@ foreign key(id_producto) references producto(id_producto),
 foreign key(id_turno) references turno(id_turno)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
-
 -- Usuarios
 INSERT INTO usuario (roles, nombre_usuario, clave) VALUES
 ('admin', 'gerente', '1234'),
@@ -125,7 +161,6 @@ INSERT INTO tipo (tipo) VALUES
 ('Pan'),
 ('Torta'),
 ('Bocadito'),
-
 
 -- Producto
 INSERT INTO producto (nombre_prod, id_tipo) VALUES
