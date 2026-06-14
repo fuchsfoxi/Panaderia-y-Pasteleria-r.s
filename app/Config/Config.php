@@ -17,7 +17,9 @@ if (file_exists($envFile)) {
 define("DB_HOST", $_ENV['DB_HOST'] ?? 'localhost');
 define("DB_PORT", $_ENV['DB_PORT'] ?? '3306');
 define("DB_USER", $_ENV['DB_USERNAME'] ?? 'root');
+
 //temporalmente dejas el name de database y password vacios, modificar cuando se tenga tiempo
+
 define("DB_NAME", $_ENV['DB_DATABASE'] ?? 'panaderia_rs');
 define("DB_PASSWORD", $_ENV['DB_PASSWORD'] ?? '');
 

@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../core/Database.php';
 
 class Historial {
@@ -10,7 +9,6 @@ class Historial {
     }
 
     public function obtenerTodo(?string $tipo = null, ?string $fecha = null): array {
-
         $sql = "SELECT 
                     p.id_produccion,
                     p.cantidad_prod,
@@ -28,13 +26,12 @@ class Historial {
 
         $params = [];
 
-        // FILTRO POR TIPO
         if ($tipo !== null && $tipo !== 'todos') {
             $sql .= " AND tp.tipo = ?";
             $params[] = $tipo;
         }
 
-        // FILTRO POR FECHA (usar hora_agotada)
+        // Filtro por fecha: si hora_agotada es NULL, no aparece en filtro por fecha
         if ($fecha !== null && $fecha !== '') {
             $sql .= " AND DATE(p.hora_agotada) = ?";
             $params[] = $fecha;
