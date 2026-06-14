@@ -14,40 +14,31 @@ class ProduccionController extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_turno = (int)($_POST['id_turno'] ?? 0);
-            $id_empleado = (int)($_POST['id_empleado'] ?? 0);
             $productos = $_POST['productos'] ?? [];
 
-            if ($id_turno === 0 || $id_empleado === 0 || empty($productos)) {
-                header("Location: " . BASE_URL . "/produccion/crear?error=1");
-                exit();
-            }
-
-            $productos_formateados = [];
-            foreach ($productos as $id_producto => $cantidad) {
-                if ((int)$cantidad > 0) {
-                    $productos_formateados[] = [
-                        'id_producto' => (int)$id_producto,
-                        'cantidad' => (int)$cantidad
-                    ];
-                }
-            }
-
-            if (empty($productos_formateados)) {
+            if ($id_turno === 0 || empty($productos)) {
                 header("Location: " . BASE_URL . "/produccion/crear?error=1");
                 exit();
             }
 
             $modelo = new Produccion();
-            $modelo->insertar($id_turno, $id_empleado, $productos_formateados);
+
+            foreach ($productos as $id_producto => $cantidad) {
+                $cantidad = (int)$cantidad;
+                if ($cantidad > 0) {
+                    $modelo->insertar($id_turno, (int)$id_producto, $cantidad, null);
+                }
+            }
+
             header("Location: " . BASE_URL . "/produccion/crear");
             exit();
         }
 
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('PAN'),
+            'productos' => (new Producto())->obtenerProductosPorTipo('Pan'),
             'turnos'    => (new Turno())->obtenerTurnos(),
-            'panes'     => $modelo->obtenerProduccion('PAN'),
+            'panes'     => $modelo->obtenerProduccion('Pan'),
         ];
         $this->view('stock/stock_panes', $datos);
     }
@@ -60,21 +51,17 @@ class ProduccionController extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_turno = (int)($_POST['id_turno'] ?? 0);
-            $id_empleado = (int)($_POST['id_empleado'] ?? 0);
-            $productos = $_POST['productos'] ?? [];
+            $id_producto = (int)($_POST['id_producto'] ?? 0);
+            $cantidad = (int)($_POST['cantidad'] ?? 0);
+            $hora_agotada = !empty($_POST['hora_agotada']) ? $_POST['hora_agotada'] : null;
 
-            $productos_formateados = [];
-            foreach ($productos as $id_producto => $cantidad) {
-                if ((int)$cantidad > 0) {
-                    $productos_formateados[] = [
-                        'id_producto' => (int)$id_producto,
-                        'cantidad' => (int)$cantidad
-                    ];
-                }
+            if ($id_turno === 0 || $id_producto === 0 || $cantidad === 0) {
+                header("Location: " . BASE_URL . "/historial?error=1");
+                exit();
             }
 
             $modelo = new Produccion();
-            $modelo->actualizar($id, $id_turno, $id_empleado, $productos_formateados);
+            $modelo->actualizar($id, $id_turno, $id_producto, $cantidad, $hora_agotada);
             header("Location: " . BASE_URL . "/historial");
             exit();
         }

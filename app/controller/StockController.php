@@ -13,7 +13,6 @@ class StockController extends Controller {
         }
         $this->view('stock/stock');
     }
-    
 
     public function panes(): void {
         if (!isset($_SESSION['usuario'])) {
@@ -22,9 +21,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('PAN'),
+            'productos' => (new Producto())->obtenerProductosPorTipo('Pan'),
             'turnos'    => (new Turno())->obtenerTurnos(),
-            'panes'     => $modelo->obtenerProduccion('PAN'),
+            'panes'     => $modelo->obtenerProduccion('Pan'),
         ];
         $this->view('stock/stock_panes', $datos);
     }
@@ -36,9 +35,9 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('BOCADITO'),
+            'productos' => (new Producto())->obtenerProductosPorTipo('Bocadito'),
             'turnos'    => (new Turno())->obtenerTurnos(),
-            'bocaditos' => $modelo->obtenerProduccion('BOCADITO'),
+            'bocaditos' => $modelo->obtenerProduccion('Bocadito'),
         ];
         $this->view('stock/stock_bocaditos', $datos);
     }
@@ -50,44 +49,41 @@ class StockController extends Controller {
         }
         $modelo = new Produccion();
         $datos = [
-            'productos' => (new Producto())->obtenerProductosPorTipo('TORTA'),
+            'productos' => (new Producto())->obtenerProductosPorTipo('Torta'),
             'turnos'    => (new Turno())->obtenerTurnos(),
-            'tortas'    => $modelo->obtenerProduccion('TORTA'),
+            'tortas'    => $modelo->obtenerProduccion('Torta'),
         ];
         $this->view('stock/stock_tortas', $datos);
     }
 
-public function guardar(): void {
-    if (!isset($_SESSION['usuario'])) {
-        header("Location: " . BASE_URL . "/login");
+    public function guardar(): void {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: " . BASE_URL . "/login");
+            exit();
+        }
+
+        $id_turno    = (int)($_POST['id_turno'] ?? 0);
+        $id_producto = (int)($_POST['id_producto'] ?? 0);
+        $cantidad    = (int)($_POST['cantidad'] ?? 0);
+        $tipo        = $_POST['tipo'] ?? 'Pan';
+
+        $rutas = [
+            'Pan'      => 'panes',
+            'Bocadito' => 'bocaditos',
+            'Torta'    => 'tortas',
+        ];
+
+        $ruta = $rutas[$tipo] ?? 'panes';
+
+        if ($cantidad === 0 || $id_turno === 0 || $id_producto === 0) {
+            header("Location: " . BASE_URL . "/stock/" . $ruta . "?error=1");
+            exit();
+        }
+
+        $modelo = new Produccion();
+        $modelo->insertar($id_turno, $id_producto, $cantidad, null);
+
+        header("Location: " . BASE_URL . "/stock/" . $ruta);
         exit();
     }
-
-    $id_turno     = (int)($_POST['id_turno'] ?? 0);
-    $id_empleado  = (int)($_POST['id_empleado'] ?? 0);
-    $id_producto  = (int)($_POST['id_producto'] ?? 0);
-    $cantidad     = (int)($_POST['cantidad'] ?? 0);
-    $tipo         = $_POST['tipo'] ?? 'PAN';
-
-    $rutas = [
-        'PAN'      => 'panes',
-        'BOCADITO' => 'bocaditos',
-        'TORTA'    => 'tortas',
-    ];
-
-    $ruta = $rutas[$tipo] ?? 'panes';
-
-    if ($cantidad === 0 || $id_turno === 0 || $id_empleado === 0 || $id_producto === 0) {
-        header("Location: " . BASE_URL . "/stock/" . $ruta . "?error=1");
-        exit();
-    }
-
-    $modelo = new Produccion();
-    $modelo->insertar($id_turno, $id_empleado, [
-        ['id_producto' => $id_producto, 'cantidad' => $cantidad]
-    ]);
-
-    header("Location: " . BASE_URL . "/stock/" . $ruta);
-    exit();
-}
 }

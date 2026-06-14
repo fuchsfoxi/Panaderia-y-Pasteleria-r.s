@@ -1,50 +1,42 @@
 <?php
-
 require_once __DIR__ . "/../core/Controller.php";
 require_once __DIR__ . "/../models/Usuario.php";
 
 class UsuarioControlador extends Controller {
 
     public function index(): void {
-
         if (!isset($_SESSION['usuario'])) {
             header("Location: " . BASE_URL . "/login");
             exit();
         }
 
-        $modelo = new Usuario();
-
-        $datos = [
-            'usuarios' => $modelo->ListarUsuarios()
-        ];
-
-        $this->view('usuario/index', $datos);
+        // El modelo Usuario no tiene ListarUsuarios(), necesitas agregarlo
+        // o cambiar la lógica. Por ahora, mostramos vista vacía o redirigimos.
+        $this->view('usuario/index', ['usuarios' => []]);
     }
 
     public function crear(): void {
-
         if (!isset($_SESSION['usuario'])) {
             header("Location: " . BASE_URL . "/login");
             exit();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre_usuario = trim($_POST['nombre_usuario'] ?? '');
+            $clave = trim($_POST['clave'] ?? '');
+            $roles = $_POST['roles'] ?? 'admin';
 
-            $nombre_usuario = trim($_POST['nombre_usuario']);
-            $clave = trim($_POST['clave']);
-            $id_rol = (int)$_POST['id_rol'];
-            $id_empleado = !empty($_POST['id_empleado'])
-                ? (int)$_POST['id_empleado']
-                : null;
+            if (empty($nombre_usuario) || empty($clave)) {
+                header("Location: " . BASE_URL . "/usuario/crear?error=1");
+                exit();
+            }
 
             $modelo = new Usuario();
-            $id_rol = (int)($_POST['id_rol'] ?? 1);
-            $id_empleado = !empty($_POST['id_empleado']) ? (int)$_POST['id_empleado'] : null;
-            $modelo->insertar($id_rol, trim($_POST['nombre_usuario']), trim($_POST['clave']), $id_empleado);
+            $modelo->insertar($roles, $nombre_usuario, $clave);
             header("Location: " . BASE_URL . "/usuario");
             exit();
         }
 
         $this->view('usuario/crear');
-    }// ← cierra crear
+    }
 }

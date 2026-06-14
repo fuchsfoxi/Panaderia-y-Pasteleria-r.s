@@ -1,9 +1,7 @@
 <?php
-
 require_once __DIR__ . '/../core/Database.php';
 
 class Usuario {
-
     private PDO $db;
 
     public function __construct() {
@@ -20,9 +18,15 @@ class Usuario {
     public function insertar(string $roles, string $nombre_usuario, string $clave): bool {
         $sql = "INSERT INTO usuario (roles, nombre_usuario, clave) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-
         $hash = password_hash($clave, PASSWORD_DEFAULT);
-
         return $stmt->execute([$roles, $nombre_usuario, $hash]);
+    }
+
+    // NUEVO: Listar todos los usuarios
+    public function listarUsuarios(): array {
+        $sql = "SELECT id_usuario, roles, nombre_usuario FROM usuario ORDER BY id_usuario DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

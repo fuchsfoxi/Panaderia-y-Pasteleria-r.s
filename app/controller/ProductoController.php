@@ -24,7 +24,7 @@ class ProductoController extends Controller {
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $modelo = new Producto();
-            $modelo->insertar(trim($_POST['nombre']), trim($_POST['tipo']));
+            $modelo->insertar(trim($_POST['nombre']), (int)$_POST['tipo']);  // ← (int)
             header("Location: " . BASE_URL . "/producto");
             exit();
         }
@@ -38,9 +38,8 @@ class ProductoController extends Controller {
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $modelo = new Producto();
-            $modelo->actualizar($id, trim($_POST['nombre']), trim($_POST['tipo']));
+            $modelo->actualizar($id, trim($_POST['nombre']), (int)$_POST['tipo']);  // ← (int)
         }
-        // GET o POST: siempre vuelve a la lista
         header("Location: " . BASE_URL . "/producto");
         exit();
     }
