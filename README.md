@@ -126,71 +126,68 @@ Implementar un sistema web que permita registrar y gestionar los datos diarios d
 ## Base de Datos
 
 ```sql
-create database panaderia_rs;
-use  panaderia_rs;
 
-create table usuario(
-id_usuario int auto_increment primary key,
-roles enum('admin', 'superadmin') default 'admin',
-nombre_usuario varchar (150) not null,
-clave varchar(250) not null
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE DATABASE panaderia_rs;
+USE panaderia_rs;
 
-create table tipo(
-id_tipo int auto_increment primary key,
-tipo varchar(100)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE usuario(
+id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+roles ENUM('admin', 'superadmin') DEFAULT 'admin',
+nombre_usuario VARCHAR(150) NOT NULL,
+clave VARCHAR(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table producto(
-id_producto int auto_increment primary key,
-nombre_prod varchar(150),
- id_tipo int not null,
- foreign key(id_tipo) references tipo(id_tipo)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE tipo(
+id_tipo INT AUTO_INCREMENT PRIMARY KEY,
+tipo VARCHAR(100)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table turno(
-id_turno int auto_increment primary key,
-nombre_turno enum('Mañana', 'Noche')
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE producto(
+id_producto INT AUTO_INCREMENT PRIMARY KEY,
+nombre_prod VARCHAR(150),
+id_tipo INT NOT NULL,
+FOREIGN KEY(id_tipo) REFERENCES tipo(id_tipo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table produccion(
-id_produccion int auto_increment primary key,
-cantidad_prod int,
+CREATE TABLE turno(
+id_turno INT AUTO_INCREMENT PRIMARY KEY,
+nombre_turno ENUM('Mañana', 'Noche')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE produccion(
+id_produccion INT AUTO_INCREMENT PRIMARY KEY,
+cantidad_prod INT,
 hora_agotada DATETIME NULL DEFAULT NULL,
-id_producto int not null,
-id_turno int not null,
-foreign key(id_producto) references producto(id_producto),
-foreign key(id_turno) references turno(id_turno)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+id_producto INT NOT NULL,
+id_turno INT NOT NULL,
+FOREIGN KEY(id_producto) REFERENCES producto(id_producto),
+FOREIGN KEY(id_turno) REFERENCES turno(id_turno)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Usuarios
+-- Datos
 INSERT INTO usuario (roles, nombre_usuario, clave) VALUES
 ('admin', 'gerente', '1234'),
 ('superadmin', 'dueña', '1234');
 
--- Tipo
 INSERT INTO tipo (tipo) VALUES
 ('Pan'),
 ('Torta'),
-('Bocadito'),
+('Bocadito');
 
--- Producto
 INSERT INTO producto (nombre_prod, id_tipo) VALUES
 ('Pan de molde', 1),
 ('Torta de chocolate', 2),
 ('Bocadito de queso', 3),
-('Pastel de manzana', 4),
-('Galleta de avena', 5),
-('Empanada de pollo', 6),
-('Croissant de mantequilla', 7),
-('Queque de vainilla', 8);
+('Pastel de manzana', 2),
+('Galleta de avena', 1),
+('Empanada de pollo', 1),
+('Croissant de mantequilla', 1),
+('Queque de vainilla', 2);
 
--- Turno
 INSERT INTO turno (nombre_turno) VALUES
 ('Mañana'),
 ('Noche');
 
--- Produccion
 INSERT INTO produccion (cantidad_prod, hora_agotada, id_producto, id_turno) VALUES
 (100, NULL, 1, 1),
 (50, '2026-05-11 10:30:00', 2, 1),
